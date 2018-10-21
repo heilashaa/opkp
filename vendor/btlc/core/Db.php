@@ -15,9 +15,9 @@ class Db {
         if(!\R::testConnection()){
             throw new \Exception("Нет соединения с базой данных", 500);
         }
-        \R::freeze(true);//запретить изменять структуру таблиц и полей
+        \R::freeze(TRUE);//запретить изменять структуру таблиц и полей
         if(DEBUG){
-            \R::debug(true, 1);//lesson 12 time 13:00
+            \R::debug(TRUE, 1);//lesson 12 time 13:00
         }
     }
 
