@@ -35,14 +35,22 @@
         </div>
     </div>
     <div class="row">
-        <div>
+        <div class="footer block">
             <h5>Все права защищены</h5>
-            <p class="alert-danger"><?php
-                $logs = \R::getDatabaseAdapter()->getDatabase()->getLogger();
-                btlc\libs\Debug::arr($logs->grep('SELECT'));
-                ?></p>
         </div>
     </div>
+    <? if(DEBUG):?>
+    <div class="row">
+        <div class="debug-panel block">
+            <p class="alert-danger">
+                <?php
+                $logs = \R::getDatabaseAdapter()->getDatabase()->getLogger();
+                btlc\libs\Debug::arr($logs->grep('SELECT'));
+                ?>
+            </p>
+        </div>
+    </div>
+    <?endif;?>
 </div>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
