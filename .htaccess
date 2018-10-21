@@ -1,0 +1,72 @@
+#Установка кодировки
+AddDefaultCharset utf-8
+#Автозапуск только index.php
+DirectoryIndex index.php
+#Включение модуля перенаправления
+RewriteEngine On
+#правило переадрессации
+RewriteRule ^(.*)$ /public/$1
+
+#Запрет листинга
+#Options -Indexes
+
+#Экранирование волшебных кавычек
+#php_flag magic_quotes_gpc off
+
+#Запрет веб-доступа
+#Order Deny,Allow
+#Deny from all
+
+#Запрет веб-доступа, кроме IP:
+#order deny,allow
+#deny from all
+#allow from xxx.xxx.xxx.xxx
+
+#Запрет веб-доступа для IP:
+#Order allow,deny
+#Allow from all
+#Deny from xxx.xxx.xxx.xxx
+
+#Запрет доступа к файлу:
+#<Files private.html >
+#Order allow,deny
+#Deny from all
+
+#Перенаправление всего сайта на новый домен:
+#Redirect 301 / http://www.newdomain.com/
+
+#Перенаправление страницы на новую:
+#Redirect 301 /page1.html http://mydomain.com/page2.html
+
+#оговаривает пределы действия правила по названию файла,
+#используя регулярные выражения.
+#С ее помощью можно запретить доступ к определенным файлам:
+#<FilesMatch
+#"\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$">
+#Order Allow,Deny
+#Deny from all
+#</FilesMatch>
+
+#указывается время в секундах, отведенное на обработку РНР-скрипта
+#php_value max_execution_time 60
+
+#максимальный размер загружаемого файла
+#php_value upload_max_filesize 128M
+
+#Вывести ошибки РНР в отдельный файл
+#php_flag  log_errors on
+#php_value error_log  /home/path/to/public_html/domain/PHP_errors.log
+# PHP_errors.log - название файла, а /home/path/to/public_html/domain - путь к нему
+
+
+#Блокировка переходов со сторонних ресурсов
+#Для запрета перехода c baddomain.ru на domain.ru добавьте в .htaccess следующее
+#RewriteEngine on
+#RewriteCond % baddomain\.ru [NC]
+#RewriteRule .* - [F]
+#Если требуется запретить переходы с нескольких доменов, то используйте следующие директивы
+#RewriteEngine on
+#RewriteCond % baddomain\.ru [NC,OR]
+#RewriteCond % baddomain2\.ru [NC,OR]
+#RewriteCond % baddomain3\.ru [NC]
+#RewriteRule .* - [F]

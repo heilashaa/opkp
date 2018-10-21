@@ -1,0 +1,6 @@
+#Создание условий - если не файл
+RewriteCond %{REQUEST_FILENAME} !-f
+#Создание условий - если не каталог
+RewriteCond %{REQUEST_FILENAME} !-d
+#Правило для перенаправления
+RewriteRule (.*) index.php?$1 [L,QSA]
