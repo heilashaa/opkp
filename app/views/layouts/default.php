@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/jquery.dataTables.min.css" rel="stylesheet">
     <?=$this->getMeta();?>
 </head>
 <body>
@@ -13,11 +14,17 @@
     <div class="row">
         <div class="header block">
             <p><h1>OPKP</h1></p>
-            <p><h4>BELINTERTRANS - Transportation logistic center of Belarussion Railways</h4></p>
+            <p><h4>BELINTERTRANS</h4></p>
         </div>
     </div>
+    <div class="row message block">
+        Message block
+    </div>
+    <div class="row user block">
+        User block
+    </div>
     <div class="row">
-        <div class="col-md-2 block">
+        <div class="col-md-2 block menu">
             <ul>
                 <li><a href="#">MAIN</a></li>
                 <li><a href="#">REQUESTS</a></li>
@@ -27,7 +34,7 @@
                 <li><a href="#">DEPARTMENT</a></li>
             </ul>
         </div>
-        <div class="col-md-10 block">
+        <div class="col-md-10 block content">
             <h1>Это шаблон default</h1>
             <?= $content; ?>
         </div>
@@ -51,7 +58,17 @@
     </div>
     <?endif;?>
 </div>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
+<script  type="text/javascript">
+    $(document).ready(function() {
+        $('#example').DataTable( {
+            "language": {
+                "url": "/js/russian.json"
+            }
+        } );
+    } );
+</script>
 </body>
 </html>

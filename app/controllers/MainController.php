@@ -3,8 +3,6 @@
 namespace app\controllers;
 
 use btlc\App;
-use btlc\Cache;
-use btlc\libs\Debug;
 use RedBeanPHP\R;
 
 class MainController extends AppController {

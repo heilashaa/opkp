@@ -1,26 +1,3 @@
-.otvet{
-    color: white;
-    text-decoration: underline;
-    text-align: center;
-    background-color: red;
-    font-size: 20px;
-}
-
-.succ{
-	color: green;
-}
-
-.arr{
-	color: red;
-}
-
 .block{
-	border: 1px solid #0a0845;
-
-}
-
-.menu {
-  list-style: none;
-  margin: 0;
-  padding-left: 0;
+	border: 1px solid #0DC310;
 }
