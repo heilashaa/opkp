@@ -26,7 +26,7 @@
     <form action="/countries/add" method="post">
         Country:<br><input type="text" name="country" placeholder="country"><br>
         Note:<br><input type="text" name="note" placeholder="note"><br>
-        <input type="submit" name="submit">
+        <input type="submit" name="submit" value="add">
     </form>
 </div>
 

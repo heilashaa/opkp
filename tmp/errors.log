@@ -103,3 +103,87 @@
 [2018-10-22 18:39:21] текст ошибки: Не найден вид C:\OSPanel\domains\opkp.btlc/app/views/Countries/correct.php | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\base\View.php | строка : 47
 
         
+[2018-10-22 18:53:18] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-22 18:54:03] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-22 19:22:04] текст ошибки: !!! | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 52
+
+        
+[2018-10-22 19:22:54] текст ошибки: нет параметров для редактирования | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 52
+
+        
+[2018-10-22 19:23:45] текст ошибки: нет параметров для редактирования. Контроллер должен принять параметр id для редактирования определнной записи | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 52
+
+        
+[2018-10-22 19:29:06] текст ошибки: Контроллер app\controllers\CountiesController не найден | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 68
+
+        
+[2018-10-22 19:29:20] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-22 19:29:32] текст ошибки: нет параметров для редактирования. Контроллер должен принять параметр id для редактирования определнной записи | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 51
+
+        
+[2018-10-22 19:29:40] текст ошибки: нет такой записи для редактирования | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 48
+
+        
+[2018-10-22 19:29:41] текст ошибки: нет такой записи для редактирования | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 48
+
+        
+[2018-10-22 19:30:51] текст ошибки: нет параметров для редактирования. Контроллер должен принять параметр id для редактирования определнной записи | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 51
+
+        
+[2018-10-22 19:32:44] текст ошибки: нет параметров для редактирования. Контроллер должен принять параметр id для редактирования определнной записи | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 51
+
+        
+[2018-10-22 19:32:56] текст ошибки: нет параметров для редактирования. Контроллер должен принять параметр id для редактирования определнной записи | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 51
+
+        
+[2018-10-22 19:33:22] текст ошибки: нет параметров для редактирования. Контроллер должен принять параметр id для редактирования определнной записи | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 56
+
+        
+[2018-10-22 19:34:00] текст ошибки: нет параметров для редактирования. Контроллер должен принять параметр id для редактирования определнной записи | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 56
+
+        
+[2018-10-22 19:36:49] текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Зимбабве' for key 'country' | файл: C:\OSPanel\domains\opkp.btlc\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | строка : 188
+
+        
+[2018-10-22 19:38:50] текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Зимбабве' for key 'country' | файл: C:\OSPanel\domains\opkp.btlc\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | строка : 188
+
+        
+[2018-10-22 19:39:39] текст ошибки: OODB Store requires a bean, got: array | файл: C:\OSPanel\domains\opkp.btlc\vendor\gabordemooij\redbean\RedBeanPHP\OODB.php | строка : 119
+
+        
+[2018-10-22 19:40:15] текст ошибки: OODB Store requires a bean, got: array | файл: C:\OSPanel\domains\opkp.btlc\vendor\gabordemooij\redbean\RedBeanPHP\OODB.php | строка : 119
+
+        
+[2018-10-22 19:42:27] текст ошибки: OODB Store requires a bean, got: array | файл: C:\OSPanel\domains\opkp.btlc\vendor\gabordemooij\redbean\RedBeanPHP\OODB.php | строка : 119
+
+        
+[2018-10-22 19:45:13] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-22 19:45:38] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-22 19:45:49] текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Беларусь' for key 'country' | файл: C:\OSPanel\domains\opkp.btlc\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | строка : 188
+
+        
+[2018-10-22 20:01:13] текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Беларусь' for key 'country' | файл: C:\OSPanel\domains\opkp.btlc\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | строка : 188
+
+        
+[2018-10-22 20:29:08] текст ошибки: нет параметров для редактирования. Контроллер должен принять параметр id для редактирования определнной записи | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 60
+
+        
+[2018-10-22 20:38:55] текст ошибки: нет параметров для редактирования. Контроллер должен принять параметр id для редактирования определнной записи | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 68
+
+        
+[2018-10-22 20:39:05] текст ошибки: нет такой записи для редактирования | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 65
+
+        
+[2018-10-22 20:39:06] текст ошибки: нет такой записи для редактирования | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 65
+
+        
