@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use btlc\App;
+use btlc\libs\Debug;
 use RedBeanPHP\R;
 
 class CountriesController extends AppController {
@@ -15,13 +16,16 @@ class CountriesController extends AppController {
 
     public function addAction(){
         if($_POST['submit'] && $_POST['country']){
-            echo 'add';
-
+            $countries = R::dispense('countries');
+            $countries->country = $_POST['country'];
+            $countries->note = $_POST['note'];
+            $id = R::store($countries);
             header('Location: /countries');
             exit;
 
         }else{
             echo 'заполните все поля';
+            $_SESSION['post'] = $_POST;
             header('Location: /countries');
             exit;
         }

@@ -100,3 +100,6 @@
 [2018-10-22 01:47:05] текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1   -- keep-cache' at line 1 | файл: C:\OSPanel\domains\opkp.btlc\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | строка : 188
 
         
+[2018-10-22 18:39:21] текст ошибки: Не найден вид C:\OSPanel\domains\opkp.btlc/app/views/Countries/correct.php | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\base\View.php | строка : 47
+
+        
