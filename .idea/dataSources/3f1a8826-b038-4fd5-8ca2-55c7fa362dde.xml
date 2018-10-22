@@ -1638,7 +1638,7 @@
       <ColNames>countries_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>countries</RefTableName>
-      <RefColNames>countries_id</RefColNames>
+      <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <foreign-key id="365" parent="241" name="clients_ibfk_2">
@@ -1762,7 +1762,7 @@
       <ColNames>clients_offers_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="383" parent="244" name="clients_requests_id">
+    <column id="383" parent="244" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
@@ -1840,7 +1840,7 @@
     </index>
     <key id="395" parent="244" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>clients_requests_id</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="396" parent="244" name="clients_requests_ibfk_1">
@@ -1854,7 +1854,7 @@
       <ColNames>method_of_obtaining_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>method_of_obtaining</RefTableName>
-      <RefColNames>method_of_obtaining_id</RefColNames>
+      <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <foreign-key id="398" parent="244" name="clients_requests_ibfk_2">
@@ -1864,7 +1864,7 @@
       <RefColNames>quest_statuses_id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <column id="399" parent="245" name="countries_id">
+    <column id="399" parent="245" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
@@ -1875,14 +1875,12 @@
       <Position>2</Position>
       <Comment>страна</Comment>
       <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="401" parent="245" name="note">
       <Position>3</Position>
       <Comment>примечание</Comment>
       <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="402" parent="245" name="visiable">
@@ -1908,7 +1906,7 @@
     </index>
     <key id="405" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>countries_id</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <key id="406" parent="245" name="country">
@@ -1983,7 +1981,7 @@
       <ColNames>departments_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="417" parent="248" name="method_of_obtaining_id">
+    <column id="417" parent="248" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
@@ -1994,12 +1992,11 @@
       <Position>2</Position>
       <Comment>метод получения</Comment>
       <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="419" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>method_of_obtaining_id</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="420" parent="249" name="performers_id">
@@ -2222,7 +2219,7 @@
       <ColNames>countries_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>countries</RefTableName>
-      <RefColNames>countries_id</RefColNames>
+      <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <foreign-key id="454" parent="251" name="providers_ibfk_1">

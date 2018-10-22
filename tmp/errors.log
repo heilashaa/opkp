@@ -64,3 +64,39 @@
 [2018-10-21 22:06:40] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
 
         
+[2018-10-21 23:52:53] текст ошибки: Контроллер app\controllers\ProvidersController не найден | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 68
+
+        
+[2018-10-21 23:53:52] текст ошибки: Метод app\controllers\ProvidersController::indexAction не найден | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 65
+
+        
+[2018-10-21 23:54:32] текст ошибки: Не найден вид C:\OSPanel\domains\opkp.btlc/app/views/Providers/index.php | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\base\View.php | строка : 47
+
+        
+[2018-10-22 00:47:54] текст ошибки: Не найден вид C:\OSPanel\domains\opkp.btlc/app/views/Countries/delete.php | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\base\View.php | строка : 47
+
+        
+[2018-10-22 00:48:02] текст ошибки: Не найден вид C:\OSPanel\domains\opkp.btlc/app/views/Countries/correct.php | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\base\View.php | строка : 47
+
+        
+[2018-10-22 00:49:42] текст ошибки: Не найден вид C:\OSPanel\domains\opkp.btlc/app/views/Countries/correct.php | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\base\View.php | строка : 47
+
+        
+[2018-10-22 00:49:48] текст ошибки: Не найден вид C:\OSPanel\domains\opkp.btlc/app/views/Countries/delete.php | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\base\View.php | строка : 47
+
+        
+[2018-10-22 01:26:53] текст ошибки: Не найден вид C:\OSPanel\domains\opkp.btlc/app/views/Countries/delete.php | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\base\View.php | строка : 47
+
+        
+[2018-10-22 01:36:22] текст ошибки: Не найден вид C:\OSPanel\domains\opkp.btlc/app/views/Countries/add.php | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\base\View.php | строка : 47
+
+        
+[2018-10-22 01:37:39] текст ошибки: Не найден вид C:\OSPanel\domains\opkp.btlc/app/views/Countries/add.php | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\base\View.php | строка : 47
+
+        
+[2018-10-22 01:38:59] текст ошибки: Не найден вид C:\OSPanel\domains\opkp.btlc/app/views/Countries/add.php | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\base\View.php | строка : 47
+
+        
+[2018-10-22 01:47:05] текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1   -- keep-cache' at line 1 | файл: C:\OSPanel\domains\opkp.btlc\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | строка : 188
+
+        

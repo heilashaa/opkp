@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,9 +17,12 @@
             <p><h4>BELINTERTRANS</h4></p>
         </div>
     </div>
+    <? if(isset($_SESSION['message'])):?>
     <div class="row message block">
-        Message block
+        <?=$_SESSION['message'];?>
+        <? unset($_SESSION['message']);?>
     </div>
+    <? endif;?>
     <div class="row user block">
         User block
     </div>
@@ -29,13 +32,19 @@
                 <li><a href="#">MAIN</a></li>
                 <li><a href="#">REQUESTS</a></li>
                 <li><a href="#">CLIENTS</a></li>
-                <li><a href="#">AGENTS</a></li>
+                <li><a href="providers">Providers</a></li>
                 <li><a href="#">CLIENTS WORK</a></li>
                 <li><a href="#">DEPARTMENT</a></li>
+                <li>Directories
+                    <ul>
+                        <li><a href="countries">Counties</a></li>
+                        <li><a href="#">Departments</a></li>
+                        <li><a href="#">Employees</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <div class="col-md-10 block content">
-            <h1>Это шаблон default</h1>
             <?= $content; ?>
         </div>
     </div>
