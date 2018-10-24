@@ -3,13 +3,14 @@
 namespace app\controllers;
 
 use btlc\App;
+use btlc\libs\Debug;
 use RedBeanPHP\R;
 
 class CountriesController extends AppController {
 
     public function indexAction(){
         $this->setMeta(App::$app->getProperty('site_name'). 'Countries', 'Страны', 'Сайт, бтлц');
-        $countries = R::findAll('countries');
+        $countries = R::findAll('countries', 'WHERE visiable = 1');
         $this->set(compact('countries'));
     }
 
@@ -32,14 +33,18 @@ class CountriesController extends AppController {
 
     public function deleteAction(){
         if($_GET['id'] && is_numeric($_GET['id'])){
-            $country = R::findOne('countries', 'id=?', [$_GET['id']]);
-            R::trash('countries', $_GET['id']);
+            $country = R::load('countries', $_GET['id']);
+            $country->visiable = 0;
+            R::store($country);
             $_SESSION['message'] = "Страна {$country->country} удалена";
             header('Location: /countries');
             exit;
         }
     }
 
+    /**
+     * @throws \Exception
+     */
     public function correctAction(){
         if(isset($_POST['submit'])){
             if(!empty($_POST['country'])) {

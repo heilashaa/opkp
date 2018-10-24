@@ -187,3 +187,9 @@
 [2018-10-22 20:39:06] текст ошибки: нет такой записи для редактирования | файл: C:\OSPanel\domains\opkp.btlc\app\controllers\CountriesController.php | строка : 65
 
         
+[2018-10-24 18:27:08] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-24 18:31:19] текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Array -- keep-cache' at line 1 | файл: C:\OSPanel\domains\opkp.btlc\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | строка : 188
+
+        
