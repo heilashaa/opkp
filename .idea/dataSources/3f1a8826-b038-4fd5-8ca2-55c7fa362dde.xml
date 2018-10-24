@@ -952,10 +952,10 @@
     <table id="247" parent="7" name="departments">
       <Comment>Структурные подразделения БТЛЦ</Comment>
     </table>
-    <table id="248" parent="7" name="method_of_obtaining">
+    <table id="248" parent="7" name="employees"/>
+    <table id="249" parent="7" name="method_of_obtaining">
       <Comment>методы получения запросов</Comment>
     </table>
-    <table id="249" parent="7" name="performers"/>
     <table id="250" parent="7" name="positions">
       <Comment>должности</Comment>
     </table>
@@ -1644,8 +1644,8 @@
     <foreign-key id="365" parent="241" name="clients_ibfk_2">
       <ColNames>performers_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
-      <RefTableName>performers</RefTableName>
-      <RefColNames>performers_id</RefColNames>
+      <RefTableName>employees</RefTableName>
+      <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <column id="366" parent="242" name="client_contacts_id">
@@ -1932,7 +1932,7 @@
       <ColNames>currencies_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="410" parent="247" name="departments_id">
+    <column id="410" parent="247" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
@@ -1978,7 +1978,7 @@
     </column>
     <key id="416" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>departments_id</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="417" parent="248" name="id">
@@ -1988,73 +1988,55 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="418" parent="248" name="method_of_obtaining">
-      <Position>2</Position>
-      <Comment>метод получения</Comment>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="419" parent="248" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="420" parent="249" name="performers_id">
-      <Position>1</Position>
-      <DataType>int(10) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="421" parent="249" name="performer">
+    <column id="418" parent="248" name="employee">
       <Position>2</Position>
       <Comment>ФИО исполнителя</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="422" parent="249" name="departments_id">
+    <column id="419" parent="248" name="departments_id">
       <Position>3</Position>
       <Comment>foring key для таблицы departments</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="423" parent="249" name="positions_id">
+    <column id="420" parent="248" name="positions_id">
       <Position>4</Position>
       <Comment>foring key для таблицы positions</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="424" parent="249" name="email">
+    <column id="421" parent="248" name="email">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="425" parent="249" name="mobil_phone">
+    <column id="422" parent="248" name="mobil_phone">
       <Position>6</Position>
       <Comment>номер мобильного телефона</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="426" parent="249" name="work_phone">
+    <column id="423" parent="248" name="work_phone">
       <Position>7</Position>
       <Comment>номер рабочего телефона</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="427" parent="249" name="note">
+    <column id="424" parent="248" name="note">
       <Position>8</Position>
       <Comment>примечание</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="428" parent="249" name="visiable">
+    <column id="425" parent="248" name="visiable">
       <Position>9</Position>
       <Comment>признак видимости</Comment>
       <DataType>tinyint(3) unsigned|0s</DataType>
@@ -2062,7 +2044,7 @@
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="429" parent="249" name="temp1">
+    <column id="426" parent="248" name="temp1">
       <Position>10</Position>
       <Comment>темп1</Comment>
       <DataType>int(11)|0s</DataType>
@@ -2070,33 +2052,51 @@
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="430" parent="249" name="departments_id">
+    <index id="427" parent="248" name="departments_id">
       <ColNames>departments_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="431" parent="249" name="positions_id">
+    <index id="428" parent="248" name="positions_id">
       <ColNames>positions_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="432" parent="249" name="PRIMARY">
+    <key id="429" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>performers_id</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="433" parent="249" name="performers_ibfk_1">
+    <foreign-key id="430" parent="248" name="employees_ibfk_1">
       <ColNames>departments_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>departments</RefTableName>
-      <RefColNames>departments_id</RefColNames>
+      <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <foreign-key id="434" parent="249" name="performers_ibfk_2">
+    <foreign-key id="431" parent="248" name="employees_ibfk_2">
       <ColNames>positions_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>positions</RefTableName>
       <RefColNames>positions_id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
+    <column id="432" parent="249" name="id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="433" parent="249" name="method_of_obtaining">
+      <Position>2</Position>
+      <Comment>метод получения</Comment>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="434" parent="249" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
     <column id="435" parent="250" name="positions_id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
@@ -2225,8 +2225,8 @@
     <foreign-key id="454" parent="251" name="providers_ibfk_1">
       <ColNames>performers_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
-      <RefTableName>performers</RefTableName>
-      <RefColNames>performers_id</RefColNames>
+      <RefTableName>employees</RefTableName>
+      <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <column id="455" parent="252" name="provider_contacts_id">
@@ -2468,8 +2468,8 @@
     <foreign-key id="490" parent="254" name="quests_ibfk_1">
       <ColNames>performers_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
-      <RefTableName>performers</RefTableName>
-      <RefColNames>performers_id</RefColNames>
+      <RefTableName>employees</RefTableName>
+      <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <column id="491" parent="255" name="request_statuses_id">
@@ -2561,7 +2561,7 @@
     <foreign-key id="504" parent="255" name="request_statuses_ibfk_2">
       <ColNames>performers_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
-      <RefTableName>performers</RefTableName>
+      <RefTableName>employees</RefTableName>
       <RefColNames>departments_id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>

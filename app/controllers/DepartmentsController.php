@@ -5,38 +5,39 @@ namespace app\controllers;
 use btlc\App;
 use RedBeanPHP\R;
 
-class CountriesController extends AppController {
+class DepartmentsController extends AppController{
 
     public function indexAction(){
-        $this->setMeta(App::$app->getProperty('site_name'). 'Countries', 'Страны', 'Сайт, бтлц');
-        $countries = R::findAll('countries', 'WHERE visiable = 1');
-        $this->set(compact('countries'));
+        $this->setMeta(App::$app->getProperty('site_name'). 'Departments', 'Структурные подразделения', 'Сайт, бтлц');
+        $departments = R::findAll('departments', 'WHERE visiable = 1');
+        $this->set(compact('departments'));
     }
 
     public function addAction(){
-        if($_POST['submit'] && $_POST['country']){
-            $countries = R::dispense('countries');
-            $countries->country = $_POST['country'];
-            $countries->note = $_POST['note'];
-            $id = R::store($countries);
-            header('Location: /countries');
+        if($_POST['submit'] && $_POST['department'] && $_POST['department_full']){
+            $departments = R::dispense('departments');
+            $departments->department = $_POST['department'];
+            $departments->department_full = $_POST['department_full'];
+            $departments->note = $_POST['note'];
+            $id = R::store($departments);
+            header('Location: /departments');
             exit;
 
         }else{
             $_SESSION['post'] = $_POST;
             $_SESSION['message'] = 'заполните все поля';
-            header('Location: /countries');
+            header('Location: /departments');
             exit;
         }
     }
 
     public function deleteAction(){
         if($_GET['id'] && is_numeric($_GET['id'])){
-            $country = R::load('countries', $_GET['id']);
-            $country->visiable = 0;
-            R::store($country);
-            $_SESSION['message'] = "Страна {$country->country} удалена";
-            header('Location: /countries');
+            $department = R::load('departments', $_GET['id']);
+            $department->visiable = 0;
+            R::store($department);
+            $_SESSION['message'] = "Структурное подразделение {$department->department} удалено";
+            header('Location: /departments');
             exit;
         }
     }
@@ -72,5 +73,6 @@ class CountriesController extends AppController {
         }
         $this->set(compact('countries'));
     }
+
 
 }
