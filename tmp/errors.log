@@ -193,3 +193,6 @@
 [2018-10-24 18:31:19] текст ошибки: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Array -- keep-cache' at line 1 | файл: C:\OSPanel\domains\opkp.btlc\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | строка : 188
 
         
+[2018-10-25 12:37:59] текст ошибки: Контроллер app\controllers\PositionsController не найден | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 68
+
+        

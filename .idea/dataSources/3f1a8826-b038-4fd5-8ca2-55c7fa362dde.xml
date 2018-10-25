@@ -2076,7 +2076,7 @@
       <ColNames>positions_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>positions</RefTableName>
-      <RefColNames>positions_id</RefColNames>
+      <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <column id="432" parent="249" name="id">
@@ -2097,7 +2097,7 @@
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="435" parent="250" name="positions_id">
+    <column id="435" parent="250" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
@@ -2111,82 +2111,89 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="437" parent="250" name="PRIMARY">
+    <column id="437" parent="250" name="visiable">
+      <Position>3</Position>
+      <DataType>tinyint(3) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="438" parent="250" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>positions_id</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="438" parent="251" name="providers_id">
+    <column id="439" parent="251" name="providers_id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="439" parent="251" name="provider">
+    <column id="440" parent="251" name="provider">
       <Position>2</Position>
       <Comment>сокращенное наименование контрагента</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="440" parent="251" name="provider_full">
+    <column id="441" parent="251" name="provider_full">
       <Position>3</Position>
       <Comment>полное наименование контрагента</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="441" parent="251" name="contract">
+    <column id="442" parent="251" name="contract">
       <Position>4</Position>
       <Comment>номер договора</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="442" parent="251" name="contract_date">
+    <column id="443" parent="251" name="contract_date">
       <Position>5</Position>
       <Comment>дата заключения договора</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="443" parent="251" name="countries_id">
+    <column id="444" parent="251" name="countries_id">
       <Position>6</Position>
       <Comment>foring key для таблицы countries</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="444" parent="251" name="performers_id">
+    <column id="445" parent="251" name="performers_id">
       <Position>7</Position>
       <Comment>foring key для таблицы performers</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="445" parent="251" name="term_of_payment">
+    <column id="446" parent="251" name="term_of_payment">
       <Position>8</Position>
       <Comment>условия оплаты</Comment>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="446" parent="251" name="specialization">
+    <column id="447" parent="251" name="specialization">
       <Position>9</Position>
       <Comment>перечень возможных услуг</Comment>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="447" parent="251" name="note">
+    <column id="448" parent="251" name="note">
       <Position>10</Position>
       <Comment>примечания</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="448" parent="251" name="visiable">
+    <column id="449" parent="251" name="visiable">
       <Position>11</Position>
       <Comment>признак видимости</Comment>
       <DataType>tinyint(3) unsigned|0s</DataType>
@@ -2194,7 +2201,7 @@
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="449" parent="251" name="temp1">
+    <column id="450" parent="251" name="temp1">
       <Position>12</Position>
       <Comment>темп1</Comment>
       <DataType>int(11)|0s</DataType>
@@ -2202,97 +2209,97 @@
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="450" parent="251" name="countries_id">
+    <index id="451" parent="251" name="countries_id">
       <ColNames>countries_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="451" parent="251" name="performers_id">
+    <index id="452" parent="251" name="performers_id">
       <ColNames>performers_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="452" parent="251" name="PRIMARY">
+    <key id="453" parent="251" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>providers_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="453" parent="251" name="providers_ibfk_2">
+    <foreign-key id="454" parent="251" name="providers_ibfk_2">
       <ColNames>countries_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>countries</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <foreign-key id="454" parent="251" name="providers_ibfk_1">
+    <foreign-key id="455" parent="251" name="providers_ibfk_1">
       <ColNames>performers_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>employees</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <column id="455" parent="252" name="provider_contacts_id">
+    <column id="456" parent="252" name="provider_contacts_id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="456" parent="252" name="providers_id">
+    <column id="457" parent="252" name="providers_id">
       <Position>2</Position>
       <Comment>foring key для таблицы providers</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="457" parent="252" name="name">
+    <column id="458" parent="252" name="name">
       <Position>3</Position>
       <Comment>ФИО контрагента</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="458" parent="252" name="position">
+    <column id="459" parent="252" name="position">
       <Position>4</Position>
       <Comment>должность контрагента</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="459" parent="252" name="mobil_phone">
+    <column id="460" parent="252" name="mobil_phone">
       <Position>5</Position>
       <Comment>мобильный телефон</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="460" parent="252" name="work_phone">
+    <column id="461" parent="252" name="work_phone">
       <Position>6</Position>
       <Comment>рабочий телефон</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="461" parent="252" name="fax_phone">
+    <column id="462" parent="252" name="fax_phone">
       <Position>7</Position>
       <Comment>номер факса</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="462" parent="252" name="email">
+    <column id="463" parent="252" name="email">
       <Position>8</Position>
       <Comment>email</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="463" parent="252" name="note">
+    <column id="464" parent="252" name="note">
       <Position>9</Position>
       <Comment>примечание</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="464" parent="252" name="visiable">
+    <column id="465" parent="252" name="visiable">
       <Position>10</Position>
       <Comment>признак видимости</Comment>
       <DataType>tinyint(3) unsigned|0s</DataType>
@@ -2300,7 +2307,7 @@
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="465" parent="252" name="temp1">
+    <column id="466" parent="252" name="temp1">
       <Position>11</Position>
       <Comment>темп1</Comment>
       <DataType>int(11)|0s</DataType>
@@ -2308,44 +2315,44 @@
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="466" parent="252" name="providers_id">
+    <index id="467" parent="252" name="providers_id">
       <ColNames>providers_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="467" parent="252" name="PRIMARY">
+    <key id="468" parent="252" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>provider_contacts_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="468" parent="252" name="providers_contacts_ibfk_1">
+    <foreign-key id="469" parent="252" name="providers_contacts_ibfk_1">
       <ColNames>providers_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>providers</RefTableName>
       <RefColNames>providers_id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <column id="469" parent="253" name="quest_statuses_id">
+    <column id="470" parent="253" name="quest_statuses_id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="470" parent="253" name="quest_status">
+    <column id="471" parent="253" name="quest_status">
       <Position>2</Position>
       <Comment>статус квеста</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="471" parent="253" name="note">
+    <column id="472" parent="253" name="note">
       <Position>3</Position>
       <Comment>примечание</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="472" parent="253" name="visiable">
+    <column id="473" parent="253" name="visiable">
       <Position>4</Position>
       <Comment>признак видимости</Comment>
       <DataType>tinyint(3) unsigned|0s</DataType>
@@ -2353,7 +2360,7 @@
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="473" parent="253" name="temp1">
+    <column id="474" parent="253" name="temp1">
       <Position>5</Position>
       <Comment>темп1</Comment>
       <DataType>int(11)|0s</DataType>
@@ -2361,75 +2368,75 @@
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="474" parent="253" name="PRIMARY">
+    <key id="475" parent="253" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>quest_statuses_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="475" parent="254" name="quests_id">
+    <column id="476" parent="254" name="quests_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="476" parent="254" name="quest">
+    <column id="477" parent="254" name="quest">
       <Position>2</Position>
       <Comment>Содержание квеста</Comment>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="477" parent="254" name="quest_statuses_id">
+    <column id="478" parent="254" name="quest_statuses_id">
       <Position>3</Position>
       <Comment>foring key для таблицы quest_statuses</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="478" parent="254" name="quest_date">
+    <column id="479" parent="254" name="quest_date">
       <Position>4</Position>
       <Comment>время начало квеста</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="479" parent="254" name="quest_control_date">
+    <column id="480" parent="254" name="quest_control_date">
       <Position>5</Position>
       <Comment>контролное время окнчания квеста</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="480" parent="254" name="performers_id">
+    <column id="481" parent="254" name="performers_id">
       <Position>6</Position>
       <Comment>foring key для таблицы performers</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="481" parent="254" name="implementation">
+    <column id="482" parent="254" name="implementation">
       <Position>7</Position>
       <Comment>информация о реализации квеста</Comment>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="482" parent="254" name="implementation_date">
+    <column id="483" parent="254" name="implementation_date">
       <Position>8</Position>
       <Comment>фактическое время реализации квеста</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="483" parent="254" name="note">
+    <column id="484" parent="254" name="note">
       <Position>9</Position>
       <Comment>примечание</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="484" parent="254" name="visiable">
+    <column id="485" parent="254" name="visiable">
       <Position>10</Position>
       <Comment>признак видимости</Comment>
       <DataType>tinyint(3) unsigned|0s</DataType>
@@ -2437,7 +2444,7 @@
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="485" parent="254" name="temp1">
+    <column id="486" parent="254" name="temp1">
       <Position>11</Position>
       <Comment>темп1</Comment>
       <DataType>int(11)|0s</DataType>
@@ -2445,76 +2452,76 @@
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="486" parent="254" name="quest_statuses_id">
+    <index id="487" parent="254" name="quest_statuses_id">
       <ColNames>quest_statuses_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="487" parent="254" name="quests_ibfk_1">
+    <index id="488" parent="254" name="quests_ibfk_1">
       <ColNames>performers_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="488" parent="254" name="PRIMARY">
+    <key id="489" parent="254" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>quests_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="489" parent="254" name="quests_ibfk_2">
+    <foreign-key id="490" parent="254" name="quests_ibfk_2">
       <ColNames>quest_statuses_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>quest_statuses</RefTableName>
       <RefColNames>quest_statuses_id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <foreign-key id="490" parent="254" name="quests_ibfk_1">
+    <foreign-key id="491" parent="254" name="quests_ibfk_1">
       <ColNames>performers_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>employees</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <column id="491" parent="255" name="request_statuses_id">
+    <column id="492" parent="255" name="request_statuses_id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="492" parent="255" name="request_status">
+    <column id="493" parent="255" name="request_status">
       <Position>2</Position>
       <Comment>описание статуса выполнения запроса клиента</Comment>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="493" parent="255" name="request_status_date">
+    <column id="494" parent="255" name="request_status_date">
       <Position>3</Position>
       <Comment>время изменения статуса запроса клиента</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="494" parent="255" name="status_codes_id">
+    <column id="495" parent="255" name="status_codes_id">
       <Position>4</Position>
       <Comment>foring key для таблицы status_codes</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="495" parent="255" name="performers_id">
+    <column id="496" parent="255" name="performers_id">
       <Position>5</Position>
       <Comment>foring key для таблицы performers</Comment>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="496" parent="255" name="note">
+    <column id="497" parent="255" name="note">
       <Position>6</Position>
       <Comment>примечание</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="497" parent="255" name="visiable">
+    <column id="498" parent="255" name="visiable">
       <Position>7</Position>
       <Comment>признак видимости</Comment>
       <DataType>tinyint(4)|0s</DataType>
@@ -2522,7 +2529,7 @@
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="498" parent="255" name="temp1">
+    <column id="499" parent="255" name="temp1">
       <Position>8</Position>
       <Comment>темп1</Comment>
       <DataType>int(11)|0s</DataType>
@@ -2530,7 +2537,7 @@
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="499" parent="255" name="temp2">
+    <column id="500" parent="255" name="temp2">
       <Position>9</Position>
       <Comment>темп2</Comment>
       <DataType>int(11)|0s</DataType>
@@ -2538,55 +2545,55 @@
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="500" parent="255" name="status_codes_id">
+    <index id="501" parent="255" name="status_codes_id">
       <ColNames>status_codes_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="501" parent="255" name="performers_id">
+    <index id="502" parent="255" name="performers_id">
       <ColNames>performers_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="502" parent="255" name="PRIMARY">
+    <key id="503" parent="255" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>request_statuses_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="503" parent="255" name="request_statuses_ibfk_1">
+    <foreign-key id="504" parent="255" name="request_statuses_ibfk_1">
       <ColNames>status_codes_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>status_codes</RefTableName>
       <RefColNames>status_codes_id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <foreign-key id="504" parent="255" name="request_statuses_ibfk_2">
+    <foreign-key id="505" parent="255" name="request_statuses_ibfk_2">
       <ColNames>performers_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>employees</RefTableName>
       <RefColNames>departments_id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <column id="505" parent="256" name="status_codes_id">
+    <column id="506" parent="256" name="status_codes_id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="506" parent="256" name="status_code">
+    <column id="507" parent="256" name="status_code">
       <Position>2</Position>
       <Comment>наименование кода статуса</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="507" parent="256" name="note">
+    <column id="508" parent="256" name="note">
       <Position>3</Position>
       <Comment>примечание</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="508" parent="256" name="visiable">
+    <column id="509" parent="256" name="visiable">
       <Position>4</Position>
       <Comment>признак видимости</Comment>
       <DataType>tinyint(3) unsigned|0s</DataType>
@@ -2594,25 +2601,25 @@
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="509" parent="256" name="PRIMARY">
+    <key id="510" parent="256" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>status_codes_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="510" parent="257" name="id">
+    <column id="511" parent="257" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="511" parent="257" name="name">
+    <column id="512" parent="257" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="512" parent="257" name="PRIMARY">
+    <key id="513" parent="257" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

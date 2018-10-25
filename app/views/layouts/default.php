@@ -37,8 +37,9 @@
                 <li><a href="#">DEPARTMENT</a></li>
                 <li>Directories
                     <ul>
-                        <li><a href="countries">Counties</a></li>
-                        <li><a href="departments">Departments</a></li>
+                        <li><a href="/countries">Counties</a></li>
+                        <li><a href="/departments">Departments</a></li>
+                        <li><a href="/positions">Positions</a></li>
                         <li><a href="#">Employees</a></li>
                     </ul>
                 </li>

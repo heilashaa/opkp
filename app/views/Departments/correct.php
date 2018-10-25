@@ -1,11 +1,12 @@
-<h1>Countries correct</h1>
+<h1>Departments correct</h1>
 <div class="block">
-    <form action="/countries/correct/?id=<?=$countries->id;?>" method="post">
-        <input type="hidden" name="id" value="<?=$countries->id?>">
-        Country:<br><input type="text" name="country" placeholder="country" value="<?=$countries->country;?>"><br>
-        Note:<br><input type="text" name="note" placeholder="note" value="<?=$countries->note;?>"><br>
+    <form action="/departments/correct/?id=<?=$departments->id;?>" method="post">
+        <input type="hidden" name="id" value="<?=$departments->id?>">
+        Department:<br><input type="text" name="department" placeholder="department" value="<?=$departments->department;?>"><br>
+        Department_full:<br><input type="text" name="department_full" placeholder="department_full" value="<?=$departments->department_full;?>"><br>
+        Note:<br><input type="text" name="note" placeholder="note" value="<?=$departments->note;?>"><br>
         <input type="submit" name="submit" value="Save"><br>
-        <a href="/countries">Back</a>
+        <a href="/departments">Back</a>
     </form>
 </div>
 
