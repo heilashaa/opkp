@@ -1,24 +1,22 @@
 <h1>Departments</h1>
 <? if($departments):?>
-    <table>
+    <table class="table">
         <thead>
             <tr>
+                <th></th>
+                <th></th>
                 <th>department</th>
                 <th>department_full</th>
                 <th>Note</th>
-                <th>Visiable</th>
-                <th>Delete</th>
-                <th>Correct</th>
             </tr>
         </thead>
         <? foreach ($departments as $department):?>
             <tr>
+                <td><a class="glyphicon glyphicon-trash" href="/departments/delete/?id=<?=$department->id?>"></a></td>
+                <td><a class="glyphicon glyphicon-pencil" href="/departments/correct/?id=<?=$department->id?>"></a></td>
                 <td><?=$department->department?></td>
                 <td><?=$department->department_full?></td>
                 <td><?=$department->note?></td>
-                <td><?=$department->visiable?></td>
-                <td><a href="/departments/delete/?id=<?=$department->id?>">Delete</a></td>
-                <td><a href="/departments/correct/?id=<?=$department->id?>">Correct</a></td>
             </tr>
         <? endforeach;?>
     </table>

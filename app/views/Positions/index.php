@@ -1,20 +1,18 @@
 <h1>Positions</h1>
 <? if($positions):?>
-    <table>
+    <table class="table">
         <thead>
             <tr>
+                <th></th>
+                <th></th>
                 <th>position</th>
-                <th>Visiable</th>
-                <th>Delete</th>
-                <th>Correct</th>
             </tr>
         </thead>
         <? foreach ($positions as $position):?>
             <tr>
+                <td><a class="glyphicon glyphicon-trash" href="/positions/delete/?id=<?=$position->id?>"></a></td>
+                <td><a class="glyphicon glyphicon-pencil" href="/positions/correct/?id=<?=$position->id?>"></a></td>
                 <td><?=$position->position?></td>
-                <td><?=$position->visiable?></td>
-                <td><a href="/positions/delete/?id=<?=$position->id?>">Delete</a></td>
-                <td><a href="/positions/correct/?id=<?=$position->id?>">Correct</a></td>
             </tr>
         <? endforeach;?>
     </table>
@@ -22,7 +20,7 @@
 
 <div class="block">
     <form action="/positions/add" method="post">
-        Department:<br><input type="text" name="position" placeholder="position"><br>
+        Position:<br><input type="text" name="position" placeholder="position"><br>
         <input type="submit" name="submit" value="add">
     </form>
 </div>

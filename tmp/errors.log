@@ -196,3 +196,36 @@
 [2018-10-25 12:37:59] текст ошибки: Контроллер app\controllers\PositionsController не найден | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 68
 
         
+[2018-10-26 12:43:08] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-26 13:04:23] текст ошибки: Не найден вид C:\OSPanel\domains\opkp.btlc/app/views/Positions/correct.php | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\base\View.php | строка : 47
+
+        
+[2018-10-26 13:05:59] текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'note' in 'field list' | файл: C:\OSPanel\domains\opkp.btlc\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | строка : 188
+
+        
+[2018-10-27 12:34:27] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-27 12:37:06] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-27 12:38:14] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-27 12:38:50] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-27 12:39:32] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-27 12:39:50] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 72
+
+        
+[2018-10-28 01:16:35] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 70
+
+        
+[2018-10-28 01:18:12] текст ошибки: Страница не найдена | файл: C:\OSPanel\domains\opkp.btlc\vendor\btlc\core\Router.php | строка : 70
+
+        

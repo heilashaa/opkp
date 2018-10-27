@@ -1,22 +1,20 @@
 <h1>Countries</h1>
 <? if($countries):?>
-    <table>
+    <table class="table">
         <thead>
             <tr>
+                <th></th>
+                <th></th>
                 <th>Country</th>
                 <th>Note</th>
-                <th>Visiable</th>
-                <th>Delete</th>
-                <th>Correct</th>
             </tr>
         </thead>
         <? foreach ($countries as $country):?>
             <tr>
+                <td><a class="glyphicon glyphicon-trash" href="/countries/delete/?id=<?=$country->id?>"></a></td>
+                <td><a class="glyphicon glyphicon-pencil" href="/countries/correct/?id=<?=$country->id?>"></a></td>
                 <td><?=$country->country?></td>
                 <td><?=$country->note?></td>
-                <td><?=$country->visiable?></td>
-                <td><a href="/countries/delete/?id=<?=$country->id?>">Delete</a></td>
-                <td><a href="/countries/correct/?id=<?=$country->id?>">Correct</a></td>
             </tr>
         <? endforeach;?>
     </table>

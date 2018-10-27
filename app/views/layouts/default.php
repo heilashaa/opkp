@@ -28,13 +28,15 @@
     </div>
     <div class="row">
         <div class="col-md-2 block menu">
+            <?php new \app\widgets\menu\Menu([
+                'table' => 'test',
+            ]); ?>
             <ul>
                 <li><a href="/">MAIN</a></li>
                 <li><a href="#">REQUESTS</a></li>
                 <li><a href="#">CLIENTS</a></li>
                 <li><a href="providers">Providers</a></li>
                 <li><a href="#">CLIENTS WORK</a></li>
-                <li><a href="#">DEPARTMENT</a></li>
                 <li>Directories
                     <ul>
                         <li><a href="/countries">Counties</a></li>

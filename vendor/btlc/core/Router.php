@@ -2,8 +2,6 @@
 
 namespace btlc;
 
-use btlc\libs\Debug;
-
 class Router {
 
     /**

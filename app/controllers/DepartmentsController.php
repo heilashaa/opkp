@@ -51,18 +51,19 @@ class DepartmentsController extends AppController{
      */
     public function correctAction(){
         if(isset($_POST['submit'])){
-            if(!empty($_POST['country'])) {
-                $countries = R::load('countries', $_POST['id']);
-                $countries->country = $_POST['country'];
-                $countries->note = $_POST['note'];
-                R::store($countries);
-                $_SESSION['message'] = "Страна {$_POST['country']} откорректирована";
-                header('Location: /countries');
+            if(!empty($_POST['department']) && !empty($_POST['department_full'])) {
+                $departments = R::load('departments', $_POST['id']);
+                $departments->department = $_POST['department'];
+                $departments->department_full = $_POST['department_full'];
+                $departments->note = $_POST['note'];
+                R::store($departments);
+                $_SESSION['message'] = "Отдел {$_POST['department']} откорректирован";
+                header('Location: /departments');
                 exit;
             }else{
-                $_SESSION['message'] = "поле страна не может быть пустым";
+                $_SESSION['message'] = "поля departmen и department_full не могут быть пустыми";
                 $_SESSION['post'] = $_POST;
-                header('Location: /countries/correct/?id='.$_POST['id']);
+                header('Location: /departments/correct/?id='.$_POST['id']);
                 exit;
             }
         }
