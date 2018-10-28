@@ -28,24 +28,9 @@
     </div>
     <div class="row">
         <div class="col-md-2 block menu">
-            <?php new \app\widgets\menu\Menu([
-                'table' => 'test',
-            ]); ?>
-            <ul>
-                <li><a href="/">MAIN</a></li>
-                <li><a href="#">REQUESTS</a></li>
-                <li><a href="#">CLIENTS</a></li>
-                <li><a href="providers">Providers</a></li>
-                <li><a href="#">CLIENTS WORK</a></li>
-                <li>Directories
-                    <ul>
-                        <li><a href="/countries">Counties</a></li>
-                        <li><a href="/departments">Departments</a></li>
-                        <li><a href="/positions">Positions</a></li>
-                        <li><a href="#">Employees</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <? new \app\widgets\menu\Menu([
+                'cache' => 0,
+            ]);?>
         </div>
         <div class="col-md-10 block content">
             <?= $content; ?>
