@@ -99,7 +99,7 @@ class Menu{
         $attrs = '';
         if(!empty($this->attrs)){
             foreach ($this->attrs as $k => $v){
-                $attrs .= ' '.$k. '="'.$v.'"';//todo на двойные ковычки
+                $attrs .= ' '.$k. '="'.$v.'"';
             }
         }
         echo '<' .$this->container. ' class="' .$this->class. '"' . $attrs .'>';
