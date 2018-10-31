@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use btlc\App;
+use btlc\libs\Debug;
 use RedBeanPHP\R;
 
 /**
@@ -19,6 +20,7 @@ class DepartmentsController extends AppController{
 
     public function addAction(){
         if($_POST['submit'] && $_POST['department'] && $_POST['department_full']){
+            Debug::arr($_POST);
             $departments = R::dispense('departments');
             $departments->department = $_POST['department'];
             $departments->department_full = $_POST['department_full'];

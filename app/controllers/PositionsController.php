@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use btlc\App;
+use btlc\libs\Debug;
 use RedBeanPHP\R;
 
 class PositionsController extends AppController {
@@ -18,12 +19,12 @@ class PositionsController extends AppController {
             $positions = R::dispense('positions');
             $positions->position = $_POST['position'];
             $id = R::store($positions);
+            $_SESSION['message'] = "Должность {$_POST['position']} добавлена";
             header('Location: /positions');
             exit;
 
         }else{
             $_SESSION['post'] = $_POST;
-            $_SESSION['message'] = 'заполните все поля';
             header('Location: /positions');
             exit;
         }
