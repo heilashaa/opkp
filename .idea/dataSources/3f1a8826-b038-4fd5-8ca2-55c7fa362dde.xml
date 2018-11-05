@@ -1583,7 +1583,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="358" parent="241" name="performers_id">
+    <column id="358" parent="241" name="employees_id">
       <Position>7</Position>
       <Comment>foring key для таблицы performers</Comment>
       <DataType>int(10) unsigned|0s</DataType>
@@ -1633,7 +1633,7 @@
       <Type>btree</Type>
     </index>
     <index id="365" parent="241" name="performers_id">
-      <ColNames>performers_id</ColNames>
+      <ColNames>employees_id</ColNames>
       <Type>btree</Type>
     </index>
     <key id="366" parent="241" name="PRIMARY">
@@ -1649,7 +1649,7 @@
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <foreign-key id="368" parent="241" name="clients_ibfk_2">
-      <ColNames>performers_id</ColNames>
+      <ColNames>employees_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>employees</RefTableName>
       <RefColNames>id</RefColNames>
@@ -2200,7 +2200,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="453" parent="252" name="performers_id">
+    <column id="453" parent="252" name="employees_id">
       <Position>7</Position>
       <Comment>foring key для таблицы performers</Comment>
       <DataType>int(10) unsigned|0s</DataType>
@@ -2249,7 +2249,7 @@
       <Type>btree</Type>
     </index>
     <index id="460" parent="252" name="performers_id">
-      <ColNames>performers_id</ColNames>
+      <ColNames>employees_id</ColNames>
       <Type>btree</Type>
     </index>
     <key id="461" parent="252" name="PRIMARY">
@@ -2265,7 +2265,7 @@
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <foreign-key id="463" parent="252" name="providers_ibfk_1">
-      <ColNames>performers_id</ColNames>
+      <ColNames>employees_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>employees</RefTableName>
       <RefColNames>id</RefColNames>
@@ -2443,7 +2443,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="489" parent="255" name="performers_id">
+    <column id="489" parent="255" name="employees_id">
       <Position>6</Position>
       <Comment>foring key для таблицы performers</Comment>
       <DataType>int(10) unsigned|0s</DataType>
@@ -2492,7 +2492,7 @@
       <Type>btree</Type>
     </index>
     <index id="496" parent="255" name="quests_ibfk_1">
-      <ColNames>performers_id</ColNames>
+      <ColNames>employees_id</ColNames>
       <Type>btree</Type>
     </index>
     <key id="497" parent="255" name="PRIMARY">
@@ -2508,7 +2508,7 @@
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <foreign-key id="499" parent="255" name="quests_ibfk_1">
-      <ColNames>performers_id</ColNames>
+      <ColNames>employees_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>employees</RefTableName>
       <RefColNames>id</RefColNames>
@@ -2542,7 +2542,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="504" parent="256" name="performers_id">
+    <column id="504" parent="256" name="employees_id">
       <Position>5</Position>
       <Comment>foring key для таблицы performers</Comment>
       <DataType>int(10) unsigned|0s</DataType>
@@ -2585,7 +2585,7 @@
       <Type>btree</Type>
     </index>
     <index id="510" parent="256" name="performers_id">
-      <ColNames>performers_id</ColNames>
+      <ColNames>employees_id</ColNames>
       <Type>btree</Type>
     </index>
     <key id="511" parent="256" name="PRIMARY">
@@ -2601,7 +2601,7 @@
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <foreign-key id="513" parent="256" name="request_statuses_ibfk_2">
-      <ColNames>performers_id</ColNames>
+      <ColNames>employees_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>employees</RefTableName>
       <RefColNames>departments_id</RefColNames>

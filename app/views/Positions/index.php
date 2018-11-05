@@ -1,12 +1,12 @@
 <div class="col-6">
     <div class="card mt-5">
         <div class="card-body">
-            <h4 class="header-title">Positions</h4>
+            <h4 class="header-title">Добавление должности</h4>
             <form class="needs-validation" novalidate="" action="/positions/add" method="post">
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
-                        <label for="validationCustom01">Position</label>
-                        <input type="text" class="form-control" id="validationCustom01" name="position" placeholder="Position" value="" required="">
+                        <label for="validationCustom01">Должность</label>
+                        <input type="text" class="form-control" id="validationCustom01" name="position" placeholder="Введите должность" value="" required="">
                         <div class="valid-feedback">
                             ok
                         </div>
@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </div>
-                <button name="submit" type="submit" class="btn btn-primary btn-flat btn-warning" value="add">Add</button>
+                <button name="submit" type="submit" class="btn btn-primary btn-flat btn-warning" value="add">Добавить</button>
             </form>
         </div>
     </div>
@@ -24,14 +24,14 @@
     <div class="card">
         <div class="card-body">
             <? if($positions):?>
-            <h4 class="header-title">Positions</h4>
+            <h4 class="header-title">Существующие должности</h4>
             <div class="single-table">
                 <div class="table-responsive">
                     <table class="table table-hover text-center table-sm">
                         <thead class="text-uppercase bg-secondary">
                         <tr class="text-white">
-                            <th scope="col">Possition</th>
-                            <th scope="col">action</th>
+                            <th scope="col">Должность</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>

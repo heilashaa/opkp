@@ -242,20 +242,14 @@
             <!-- page title area end -->
             <div class="main-content-inner">
                 <!-- dismiss alert area start -- todo добавить вывод из сессии-->
-                <? if(isset($_SESSION['message'])):?>
+                <? if(isset($_SESSION['msg'])):?>
                     <div class="alert-dismiss mt-3">
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong><i class="fa fa-exclamation-circle"></i> Attention!</strong> <?=$_SESSION['message'];?>.
+                        <div class="alert alert-<?=$_SESSION['msg']['result'];?> alert-dismissible fade show" role="alert">
+                            <strong><i class="fa fa-exclamation-circle"></i> Attention!</strong> <?=$_SESSION['msg']['text'];?>.
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span></button>
                         </div>
                     </div>
-                    <div class="alert-dismiss mt-3">
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong><i class="fa fa-exclamation-circle"></i> Attention!</strong> <?=$_SESSION['message'];?>.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span></button>
-                        </div>
-                    </div>
-                    <? unset($_SESSION['message']);?>
+                    <? unset($_SESSION['msg']);?>
                 <? endif;?>
                 <!-- dismiss alert area end -->
                 <?=$content;?>

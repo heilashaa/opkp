@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 21 2018 г., 15:33
+-- Время создания: Ноя 05 2018 г., 11:12
 -- Версия сервера: 5.6.37-log
 -- Версия PHP: 5.6.31
 
@@ -29,13 +29,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `clients` (
-  `clients_id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `client` varchar(255) NOT NULL COMMENT 'сокращенное наименование клиента',
   `client_full` varchar(255) NOT NULL COMMENT 'полное наименование клиента',
   `contract` varchar(255) NOT NULL COMMENT 'номер договора',
   `contract_date` int(10) UNSIGNED NOT NULL COMMENT 'дата заключения договора',
   `countries_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы countries',
-  `performers_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы performers',
+  `employees_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы performers',
   `term_of_payment` varchar(255) NOT NULL COMMENT 'условия оплаты',
   `note` varchar(255) NOT NULL COMMENT 'примечание',
   `visiable` int(11) NOT NULL DEFAULT '1' COMMENT 'признак видимости',
@@ -47,7 +47,7 @@ CREATE TABLE `clients` (
 -- Дамп данных таблицы `clients`
 --
 
-INSERT INTO `clients` (`clients_id`, `client`, `client_full`, `contract`, `contract_date`, `countries_id`, `performers_id`, `term_of_payment`, `note`, `visiable`, `temp1`, `temp2`) VALUES
+INSERT INTO `clients` (`id`, `client`, `client_full`, `contract`, `contract_date`, `countries_id`, `employees_id`, `term_of_payment`, `note`, `visiable`, `temp1`, `temp2`) VALUES
 (1, 'ИООО Кроноспан', 'ИООО Кроноспан', 'нет', 0, 1, 16, '', '', 1, 0, 0),
 (2, 'Чайна Мерчантс', 'Чайна Мерчантс', 'КП14', 534534534, 1, 3, 'предоплата', '', 1, 0, 0),
 (3, 'ПАО ТрансКонтейнер', 'ПАО ТрансКонтейнер', 'КП19', 3123123, 4, 6, 'предоплата', '', 1, 0, 0);
@@ -98,7 +98,7 @@ CREATE TABLE `clients_offers` (
 --
 
 CREATE TABLE `clients_requests` (
-  `clients_requests_id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `clients_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы clients',
   `clients_request` text NOT NULL COMMENT 'текст запроса',
   `clients_request_date` int(10) UNSIGNED NOT NULL COMMENT 'дата запроса',
@@ -139,9 +139,9 @@ INSERT INTO `client_codes` (`clien_codes_id`, `clien_code`, `clients_id`, `note`
 --
 
 CREATE TABLE `countries` (
-  `countries_id` int(10) UNSIGNED NOT NULL,
-  `country` varchar(255) NOT NULL COMMENT 'страна',
-  `note` varchar(255) NOT NULL COMMENT 'примечание',
+  `id` int(10) UNSIGNED NOT NULL,
+  `country` varchar(255) DEFAULT NULL COMMENT 'страна',
+  `note` varchar(255) DEFAULT NULL COMMENT 'примечание',
   `visiable` tinyint(3) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'признак видимости',
   `temp1` int(11) NOT NULL DEFAULT '0' COMMENT 'темп1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Страны';
@@ -150,18 +150,24 @@ CREATE TABLE `countries` (
 -- Дамп данных таблицы `countries`
 --
 
-INSERT INTO `countries` (`countries_id`, `country`, `note`, `visiable`, `temp1`) VALUES
+INSERT INTO `countries` (`id`, `country`, `note`, `visiable`, `temp1`) VALUES
 (1, 'Беларусь', '', 1, 0),
-(2, 'Германия', '', 1, 0),
+(2, 'Германия', '', 0, 0),
 (3, 'Литва', '', 1, 0),
 (4, 'Россия', '', 1, 0),
 (6, 'Латвия', '', 1, 0),
 (7, 'Украина', '', 1, 0),
-(8, 'Китай', '', 1, 0),
-(9, 'Польша', '', 1, 0),
-(10, 'Эстония', '', 1, 0),
+(8, 'Китай', '', 0, 0),
+(9, 'Польша', '', 0, 0),
+(10, 'Эстония', '', 0, 0),
 (11, 'Казахстан', '', 1, 0),
-(12, 'Молдова', '', 1, 0);
+(12, 'Молдова', '', 0, 0),
+(23, 'Зимбабве', NULL, 0, 0),
+(25, 'Мадагаскар', NULL, 0, 0),
+(26, 'Япония', '', 0, 0),
+(28, 'страна 2', 'примечание 2', 0, 0),
+(29, NULL, NULL, 0, 0),
+(30, 'Мадагоскар', '', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -192,7 +198,7 @@ INSERT INTO `currencies` (`currencies_id`, `currency`) VALUES
 --
 
 CREATE TABLE `departments` (
-  `departments_id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `department` varchar(255) NOT NULL COMMENT 'краткое наименование подразделения',
   `department_full` varchar(255) NOT NULL COMMENT 'полное наименование подразделения',
   `note` varchar(255) NOT NULL COMMENT 'примечание',
@@ -204,7 +210,7 @@ CREATE TABLE `departments` (
 -- Дамп данных таблицы `departments`
 --
 
-INSERT INTO `departments` (`departments_id`, `department`, `department_full`, `note`, `visiable`, `temp1`) VALUES
+INSERT INTO `departments` (`id`, `department`, `department_full`, `note`, `visiable`, `temp1`) VALUES
 (1, 'ОПКП', 'Отдел продаж контейнерных перевозок', '', 1, 0),
 (2, 'ОКП', 'Отдел по организации контейнерных перевозок', '', 1, 0),
 (3, 'ОПСГ', 'Отдел по организации перевозок скоропортящихся грузов', '', 1, 0),
@@ -216,37 +222,21 @@ INSERT INTO `departments` (`departments_id`, `department`, `department_full`, `n
 (9, 'БТЛЦ Брест', 'Брестский филиал БТЛЦ', '', 1, 0),
 (10, 'БТЛЦ Гомель', 'Гомельский филиал БТЛЦ', '', 1, 0),
 (11, 'БТЛЦ Могилев', 'Могилевский филиал БТЛЦ', '', 1, 0),
-(12, 'БТЛЦ Витебск', 'Витебский филиал БТЛЦ', '', 1, 0);
+(12, 'БТЛЦ Витебск', 'Витебский филиал БТЛЦ', '', 1, 0),
+(13, 'долдлод', 'олдолд', '', 0, 0),
+(14, 'вывфыв', 'вфывфывфывыф', '', 0, 0),
+(15, 'вфыв', 'вфывфывфывыфвфы', '', 0, 0),
+(16, 'dasdasd', 'dasdasdasdsda', '', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `method_of_obtaining`
+-- Структура таблицы `employees`
 --
 
-CREATE TABLE `method_of_obtaining` (
-  `method_of_obtaining_id` int(10) UNSIGNED NOT NULL,
-  `method_of_obtaining` varchar(255) NOT NULL COMMENT 'метод получения'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='методы получения запросов';
-
---
--- Дамп данных таблицы `method_of_obtaining`
---
-
-INSERT INTO `method_of_obtaining` (`method_of_obtaining_id`, `method_of_obtaining`) VALUES
-(1, 'по e-mail'),
-(2, 'по телефону'),
-(3, 'письмо');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `performers`
---
-
-CREATE TABLE `performers` (
-  `performers_id` int(10) UNSIGNED NOT NULL,
-  `performer` varchar(255) NOT NULL COMMENT 'ФИО исполнителя',
+CREATE TABLE `employees` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `employee` varchar(255) NOT NULL COMMENT 'ФИО исполнителя',
   `departments_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы departments',
   `positions_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы positions',
   `email` varchar(255) NOT NULL,
@@ -258,10 +248,10 @@ CREATE TABLE `performers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `performers`
+-- Дамп данных таблицы `employees`
 --
 
-INSERT INTO `performers` (`performers_id`, `performer`, `departments_id`, `positions_id`, `email`, `mobil_phone`, `work_phone`, `note`, `visiable`, `temp1`) VALUES
+INSERT INTO `employees` (`id`, `employee`, `departments_id`, `positions_id`, `email`, `mobil_phone`, `work_phone`, `note`, `visiable`, `temp1`) VALUES
 (1, 'Ширинга Алексей Викторович', 2, 2, 'avs@belint.by', '+375296078838', '+375172251270', '', 1, 0),
 (2, 'Гейлаш Александр Александрович', 1, 1, 'a.heilash@belint.by', '+375295258439', '+375172251171', '', 1, 0),
 (3, 'Павлова Оксана Викторовна', 2, 2, 'o.pavlova@belint.by', '', '+375 17 225 12 70', '', 1, 0),
@@ -284,25 +274,73 @@ INSERT INTO `performers` (`performers_id`, `performer`, `departments_id`, `posit
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `menu`
+--
+
+CREATE TABLE `menu` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `parent_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `menu`
+--
+
+INSERT INTO `menu` (`id`, `title`, `link`, `parent_id`) VALUES
+(2, 'Main', 'main', 0),
+(3, 'Directories', 'directories', 0),
+(4, 'Countries', 'countries', 3),
+(5, 'Departments', 'departments', 3),
+(6, 'Positions', 'positions', 3),
+(7, 'Employees', 'employees', 3),
+(8, 'same', 'same', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `method_of_obtaining`
+--
+
+CREATE TABLE `method_of_obtaining` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `method_of_obtaining` varchar(255) DEFAULT NULL COMMENT 'метод получения'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='методы получения запросов';
+
+--
+-- Дамп данных таблицы `method_of_obtaining`
+--
+
+INSERT INTO `method_of_obtaining` (`id`, `method_of_obtaining`) VALUES
+(1, 'по e-mail'),
+(2, 'по телефону'),
+(3, 'письмо');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `positions`
 --
 
 CREATE TABLE `positions` (
-  `positions_id` int(10) UNSIGNED NOT NULL,
-  `position` varchar(255) NOT NULL COMMENT 'должность'
+  `id` int(10) UNSIGNED NOT NULL,
+  `position` varchar(255) NOT NULL COMMENT 'должность',
+  `visiable` tinyint(3) UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='должности';
 
 --
 -- Дамп данных таблицы `positions`
 --
 
-INSERT INTO `positions` (`positions_id`, `position`) VALUES
-(1, 'начальник отдела'),
-(2, 'начальник сектора'),
-(3, 'заместитель начальника отдела'),
-(4, 'инженер'),
-(5, 'специалист по работе с клиентами'),
-(6, 'ведущий инженер');
+INSERT INTO `positions` (`id`, `position`, `visiable`) VALUES
+(1, 'начальник отдела', 1),
+(2, 'начальник сектора', 1),
+(3, 'заместитель начальника отдела', 1),
+(4, 'инженер', 1),
+(5, 'специалист по работе с клиентами', 1),
+(6, 'ведущий инженер', 1),
+(75, 'инженер5', 1);
 
 -- --------------------------------------------------------
 
@@ -317,7 +355,7 @@ CREATE TABLE `providers` (
   `contract` varchar(255) NOT NULL COMMENT 'номер договора',
   `contract_date` int(10) UNSIGNED NOT NULL COMMENT 'дата заключения договора',
   `countries_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы countries',
-  `performers_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы performers',
+  `employees_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы performers',
   `term_of_payment` text NOT NULL COMMENT 'условия оплаты',
   `specialization` text NOT NULL COMMENT 'перечень возможных услуг',
   `note` varchar(255) NOT NULL COMMENT 'примечания',
@@ -329,7 +367,7 @@ CREATE TABLE `providers` (
 -- Дамп данных таблицы `providers`
 --
 
-INSERT INTO `providers` (`providers_id`, `provider`, `provider_full`, `contract`, `contract_date`, `countries_id`, `performers_id`, `term_of_payment`, `specialization`, `note`, `visiable`, `temp1`) VALUES
+INSERT INTO `providers` (`providers_id`, `provider`, `provider_full`, `contract`, `contract_date`, `countries_id`, `employees_id`, `term_of_payment`, `specialization`, `note`, `visiable`, `temp1`) VALUES
 (2, 'BTLC Germany', 'Belintertrans Germany', 'КП15', 1500000000, 2, 1, 'предоплата, протокол', 'Китай, Европа, авто по Европе', '', 1, 0),
 (3, 'РЖДЛ', 'АО РЖД Логистика', 'хз', 151000000, 4, 1, 'отсрочка платежа 150 000$', 'коды по России', '', 1, 0),
 (4, 'BTLC Baltic', 'UAB Belintertrans Baltic', 'есть', 636456565, 3, 1, 'по факту', 'Литва, морской фрахт и экспедирование в порту Клайпеда', '', 1, 0),
@@ -393,7 +431,7 @@ CREATE TABLE `quests` (
   `quest_statuses_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы quest_statuses',
   `quest_date` int(10) UNSIGNED NOT NULL COMMENT 'время начало квеста',
   `quest_control_date` int(10) UNSIGNED NOT NULL COMMENT 'контролное время окнчания квеста',
-  `performers_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы performers',
+  `employees_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы performers',
   `implementation` text NOT NULL COMMENT 'информация о реализации квеста',
   `implementation_date` int(10) UNSIGNED NOT NULL COMMENT 'фактическое время реализации квеста',
   `note` varchar(255) NOT NULL COMMENT 'примечание',
@@ -405,7 +443,7 @@ CREATE TABLE `quests` (
 -- Дамп данных таблицы `quests`
 --
 
-INSERT INTO `quests` (`quests_id`, `quest`, `quest_statuses_id`, `quest_date`, `quest_control_date`, `performers_id`, `implementation`, `implementation_date`, `note`, `visiable`, `temp1`) VALUES
+INSERT INTO `quests` (`quests_id`, `quest`, `quest_statuses_id`, `quest_date`, `quest_control_date`, `employees_id`, `implementation`, `implementation_date`, `note`, `visiable`, `temp1`) VALUES
 (1, 'Проработать вывоз из Беларуси в Монголию грузов в контейнерах с отправлением со стока в Бресте. Из Бреста отправляется 1,5 поезда на Монголию в месяц. Проработать грузовую базу, ставки инв/инв, как возвращается порожний BCDU контейнер из Монголии, даст ли БИТ-Германия китайские контейнеры и сколько это будет стоить', 1, 3231231233, 123123123, 14, '', 0, '', 1, 0);
 
 -- --------------------------------------------------------
@@ -441,7 +479,7 @@ CREATE TABLE `request_statuses` (
   `request_status` text NOT NULL COMMENT 'описание статуса выполнения запроса клиента',
   `request_status_date` int(10) UNSIGNED NOT NULL COMMENT 'время изменения статуса запроса клиента',
   `status_codes_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы status_codes',
-  `performers_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы performers',
+  `employees_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы performers',
   `note` varchar(255) NOT NULL COMMENT 'примечание',
   `visiable` tinyint(4) NOT NULL DEFAULT '1' COMMENT 'признак видимости',
   `temp1` int(11) NOT NULL DEFAULT '0' COMMENT 'темп1',
@@ -479,9 +517,9 @@ INSERT INTO `status_codes` (`status_codes_id`, `status_code`, `note`, `visiable`
 -- Индексы таблицы `clients`
 --
 ALTER TABLE `clients`
-  ADD PRIMARY KEY (`clients_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `countries_id` (`countries_id`),
-  ADD KEY `performers_id` (`performers_id`);
+  ADD KEY `performers_id` (`employees_id`);
 
 --
 -- Индексы таблицы `clients_contacts`
@@ -500,7 +538,7 @@ ALTER TABLE `clients_offers`
 -- Индексы таблицы `clients_requests`
 --
 ALTER TABLE `clients_requests`
-  ADD PRIMARY KEY (`clients_requests_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `clients_id` (`clients_id`),
   ADD KEY `request_statuses_id` (`request_statuses_id`),
   ADD KEY `method_of_obtaining_id` (`method_of_obtaining_id`);
@@ -516,7 +554,7 @@ ALTER TABLE `client_codes`
 -- Индексы таблицы `countries`
 --
 ALTER TABLE `countries`
-  ADD PRIMARY KEY (`countries_id`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `country` (`country`);
 
 --
@@ -529,34 +567,40 @@ ALTER TABLE `currencies`
 -- Индексы таблицы `departments`
 --
 ALTER TABLE `departments`
-  ADD PRIMARY KEY (`departments_id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `employees`
+--
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `departments_id` (`departments_id`),
+  ADD KEY `positions_id` (`positions_id`);
+
+--
+-- Индексы таблицы `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `method_of_obtaining`
 --
 ALTER TABLE `method_of_obtaining`
-  ADD PRIMARY KEY (`method_of_obtaining_id`);
-
---
--- Индексы таблицы `performers`
---
-ALTER TABLE `performers`
-  ADD PRIMARY KEY (`performers_id`),
-  ADD KEY `departments_id` (`departments_id`),
-  ADD KEY `positions_id` (`positions_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `positions`
 --
 ALTER TABLE `positions`
-  ADD PRIMARY KEY (`positions_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `providers`
 --
 ALTER TABLE `providers`
   ADD PRIMARY KEY (`providers_id`),
-  ADD KEY `performers_id` (`performers_id`),
+  ADD KEY `performers_id` (`employees_id`),
   ADD KEY `countries_id` (`countries_id`);
 
 --
@@ -572,7 +616,7 @@ ALTER TABLE `providers_contacts`
 ALTER TABLE `quests`
   ADD PRIMARY KEY (`quests_id`),
   ADD KEY `quest_statuses_id` (`quest_statuses_id`),
-  ADD KEY `quests_ibfk_1` (`performers_id`);
+  ADD KEY `quests_ibfk_1` (`employees_id`);
 
 --
 -- Индексы таблицы `quest_statuses`
@@ -586,7 +630,7 @@ ALTER TABLE `quest_statuses`
 ALTER TABLE `request_statuses`
   ADD PRIMARY KEY (`request_statuses_id`),
   ADD KEY `status_codes_id` (`status_codes_id`),
-  ADD KEY `performers_id` (`performers_id`);
+  ADD KEY `performers_id` (`employees_id`);
 
 --
 -- Индексы таблицы `status_codes`
@@ -602,7 +646,7 @@ ALTER TABLE `status_codes`
 -- AUTO_INCREMENT для таблицы `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `clients_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT для таблицы `clients_contacts`
 --
@@ -622,7 +666,7 @@ ALTER TABLE `client_codes`
 -- AUTO_INCREMENT для таблицы `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `countries_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT для таблицы `currencies`
 --
@@ -632,22 +676,27 @@ ALTER TABLE `currencies`
 -- AUTO_INCREMENT для таблицы `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `departments_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT для таблицы `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT для таблицы `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT для таблицы `method_of_obtaining`
 --
 ALTER TABLE `method_of_obtaining`
-  MODIFY `method_of_obtaining_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT для таблицы `performers`
---
-ALTER TABLE `performers`
-  MODIFY `performers_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT для таблицы `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `positions_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 --
 -- AUTO_INCREMENT для таблицы `providers`
 --
@@ -686,42 +735,42 @@ ALTER TABLE `status_codes`
 -- Ограничения внешнего ключа таблицы `clients`
 --
 ALTER TABLE `clients`
-  ADD CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`countries_id`) REFERENCES `countries` (`countries_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `clients_ibfk_2` FOREIGN KEY (`performers_id`) REFERENCES `performers` (`performers_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`countries_id`) REFERENCES `countries` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `clients_ibfk_2` FOREIGN KEY (`employees_id`) REFERENCES `employees` (`id`) ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `clients_contacts`
 --
 ALTER TABLE `clients_contacts`
-  ADD CONSTRAINT `clients_contacts_ibfk_1` FOREIGN KEY (`clients_id`) REFERENCES `clients` (`clients_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `clients_contacts_ibfk_1` FOREIGN KEY (`clients_id`) REFERENCES `clients` (`id`) ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `clients_requests`
 --
 ALTER TABLE `clients_requests`
-  ADD CONSTRAINT `clients_requests_ibfk_1` FOREIGN KEY (`clients_id`) REFERENCES `clients` (`clients_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `clients_requests_ibfk_1` FOREIGN KEY (`clients_id`) REFERENCES `clients` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `clients_requests_ibfk_2` FOREIGN KEY (`request_statuses_id`) REFERENCES `quest_statuses` (`quest_statuses_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `clients_requests_ibfk_3` FOREIGN KEY (`method_of_obtaining_id`) REFERENCES `method_of_obtaining` (`method_of_obtaining_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `clients_requests_ibfk_3` FOREIGN KEY (`method_of_obtaining_id`) REFERENCES `method_of_obtaining` (`id`) ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `client_codes`
 --
 ALTER TABLE `client_codes`
-  ADD CONSTRAINT `client_codes_ibfk_1` FOREIGN KEY (`clients_id`) REFERENCES `clients` (`clients_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `client_codes_ibfk_1` FOREIGN KEY (`clients_id`) REFERENCES `clients` (`id`) ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `performers`
+-- Ограничения внешнего ключа таблицы `employees`
 --
-ALTER TABLE `performers`
-  ADD CONSTRAINT `performers_ibfk_1` FOREIGN KEY (`departments_id`) REFERENCES `departments` (`departments_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `performers_ibfk_2` FOREIGN KEY (`positions_id`) REFERENCES `positions` (`positions_id`) ON UPDATE CASCADE;
+ALTER TABLE `employees`
+  ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`departments_id`) REFERENCES `departments` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`positions_id`) REFERENCES `positions` (`id`) ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `providers`
 --
 ALTER TABLE `providers`
-  ADD CONSTRAINT `providers_ibfk_1` FOREIGN KEY (`performers_id`) REFERENCES `performers` (`performers_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `providers_ibfk_2` FOREIGN KEY (`countries_id`) REFERENCES `countries` (`countries_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `providers_ibfk_1` FOREIGN KEY (`employees_id`) REFERENCES `employees` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `providers_ibfk_2` FOREIGN KEY (`countries_id`) REFERENCES `countries` (`id`) ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `providers_contacts`
@@ -733,7 +782,7 @@ ALTER TABLE `providers_contacts`
 -- Ограничения внешнего ключа таблицы `quests`
 --
 ALTER TABLE `quests`
-  ADD CONSTRAINT `quests_ibfk_1` FOREIGN KEY (`performers_id`) REFERENCES `performers` (`performers_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `quests_ibfk_1` FOREIGN KEY (`employees_id`) REFERENCES `employees` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `quests_ibfk_2` FOREIGN KEY (`quest_statuses_id`) REFERENCES `quest_statuses` (`quest_statuses_id`) ON UPDATE CASCADE;
 
 --
@@ -741,7 +790,7 @@ ALTER TABLE `quests`
 --
 ALTER TABLE `request_statuses`
   ADD CONSTRAINT `request_statuses_ibfk_1` FOREIGN KEY (`status_codes_id`) REFERENCES `status_codes` (`status_codes_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `request_statuses_ibfk_2` FOREIGN KEY (`performers_id`) REFERENCES `performers` (`departments_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `request_statuses_ibfk_2` FOREIGN KEY (`employees_id`) REFERENCES `employees` (`departments_id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

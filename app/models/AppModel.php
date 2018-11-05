@@ -7,5 +7,4 @@ use btlc\base\Model;
 class AppModel extends Model {
 
 
-
 }
