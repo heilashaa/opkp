@@ -6,6 +6,7 @@ abstract class Controller {
 
     protected $route;
     protected $controller;
+    protected $action;
     protected $model;
     protected $view;
     protected $prefix;
@@ -16,6 +17,7 @@ abstract class Controller {
     public function __construct($route) {
         $this->route = $route;
         $this->controller = $route['controller'];
+        $this->action = $route['action'];
         $this->model = $route['controller'];
         $this->view = $route['action'];
         $this->prefix = $route['prefix'];
@@ -36,5 +38,8 @@ abstract class Controller {
         $this->meta['keywords'] = $keywords;
     }
 
+    public function isAjax(){
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequests';
+    }
 
 }

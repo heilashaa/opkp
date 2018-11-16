@@ -13,7 +13,7 @@ class AppController extends Controller {
 
     public function __construct($route) {
         parent::__construct($route);
-        new AppModel();//todo при добавлении, проверять наличие записей в invisible
+        new AppModel();
         App::$app->setProperty('menu', self::cacheMenu());
     }
 
@@ -66,8 +66,10 @@ class AppController extends Controller {
     }
 
     /**
-     * @param $tableName название таблицы (родительской таблицы), от записей которой зависят записи другой таблицы
-     * @param $id id записи из родительской таблицы
+     * @param $tableName
+     * название таблицы (родительской таблицы), от записей которой зависят записи другой таблицы
+     * @param $id
+     * id записи из родительской таблицы
      * @return array|bool возвращает или false если нет зависимых записей, или массив
      * [tables=>int,records=>int]
      */
@@ -88,4 +90,57 @@ class AppController extends Controller {
         }
         return false;
     }
+
+
+
+    //////////////////////////////////////////////
+
+    /**
+     * @var bool | array хранит или сессию с данными пользователя либо false
+     */
+    protected $employee = false;
+
+    /**
+     * @return array|bool формирует кэш видов доступа
+     */
+    protected function cacheAccesses(){
+        $accesses = Cache::get('accesses');
+        if(!$accesses){
+            $accesses = R::find('accesses');
+//            Debug::arr($accesses);
+//            exit;
+            $actions = $accesses->sharedActions;
+            Debug::arr($actions);
+
+            exit;
+            Cache::set('accesses', $accesses);
+        }
+        return $accesses;
+    }
+
+    public function checkEmployeeAccess(){
+        $this->setEmployee();//в конструктор
+        if(is_array($this->getEmployee())){
+            $result = R::findOne('table');
+            if($result/*запрос в базу и проверка на наличие доступа для employee по controller и action*/){
+                return true;
+            }else{
+                $this->redirect(false, 'danger', 'У вас не достаточно прав для посещения этой страницы или выполнения действия');
+            }
+        }else{
+            $this->redirect('/employees/login');
+        }
+    }
+
+    protected function setEmployee(){
+        if(isset($_SESSION['employee'])){
+            $this->employee = $_SESSION['employee'];
+        }
+        return;
+    }
+
+    protected function getEmployee(){
+        return $this->employee;
+    }
+
 }

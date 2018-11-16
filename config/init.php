@@ -1,5 +1,4 @@
 <?php
-
 define("DEBUG", 1);//режим разработки (1) и продакшен (0)
 define("ROOT", dirname(__DIR__));
 define("WWW", ROOT.'/public');
@@ -8,7 +7,7 @@ define("CORE", ROOT.'/vendor/btlc/core');
 define("LIBS", ROOT.'/vendor/btlc/core/libs');
 define("CACHE", ROOT.'/tmp/cache');
 define("CONF", ROOT.'/config');
-define("LAYOUT", 'btlc');
+define("LAYOUT", 'main');
 define("PATH", "http://{$_SERVER['HTTP_HOST']}");
 define("ADMIN", PATH.'/admin');
 

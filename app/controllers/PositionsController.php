@@ -33,7 +33,7 @@ class PositionsController extends AppController {
                     $msg = "Должность {$positions->position} существовала ранее и была восстановлена из удаленных записей";
                     $result = 'success';
                 }else{
-                    $msg = "Должность {$positions->position} существует";
+                    $msg = "Должность {$positions->position} существует. Нельзя добать дубль";
                     $result = 'danger';
                 }
                 $this->redirect('/positions', $result, $msg);
@@ -96,6 +96,7 @@ class PositionsController extends AppController {
                         $msg = "Должность {$positions->position} не была откорректирована на {$_POST['position']}, так как такая должность {$_POST['position']} уже существует в удаленных записях. Должность {$_POST['position']} восстановлена из удаленных записей";
                         $result = 'success';
                     }
+                    $this->redirect(false, $result, $msg);
                 }else{
                     $oldPosition = $positions->position;
                     $positions->position = $_POST['position'];

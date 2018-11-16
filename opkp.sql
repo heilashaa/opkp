@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 05 2018 г., 11:12
+-- Время создания: Ноя 16 2018 г., 08:30
 -- Версия сервера: 5.6.37-log
 -- Версия PHP: 5.6.31
 
@@ -21,6 +21,113 @@ SET time_zone = "+00:00";
 --
 -- База данных: `opkp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `accesses`
+--
+
+CREATE TABLE `accesses` (
+  `id` tinyint(3) UNSIGNED NOT NULL,
+  `access` varchar(255) NOT NULL,
+  `visiable` tinyint(3) UNSIGNED NOT NULL DEFAULT '1',
+  `admin` tinyint(3) UNSIGNED NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `accesses`
+--
+
+INSERT INTO `accesses` (`id`, `access`, `visiable`, `admin`) VALUES
+(1, 'не зарегистрированный', 1, 0),
+(2, 'Администратор', 1, 1),
+(7, 'остальные', 1, 0),
+(8, 'ОПКП', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `accesses_actions`
+--
+
+CREATE TABLE `accesses_actions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `accesses_id` tinyint(4) NOT NULL,
+  `actions_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `accesses_actions`
+--
+
+INSERT INTO `accesses_actions` (`id`, `accesses_id`, `actions_id`) VALUES
+(767, 2, 144),
+(768, 2, 145),
+(769, 2, 146),
+(770, 2, 147),
+(771, 2, 167),
+(772, 2, 171),
+(773, 2, 148),
+(774, 2, 149),
+(775, 2, 150),
+(776, 2, 151),
+(777, 2, 152),
+(778, 2, 153),
+(779, 2, 154),
+(780, 2, 155),
+(781, 2, 156),
+(782, 2, 157),
+(783, 2, 158),
+(784, 2, 159),
+(785, 2, 160),
+(786, 2, 161),
+(787, 2, 162),
+(788, 2, 163);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `actions`
+--
+
+CREATE TABLE `actions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `controller` varchar(255) NOT NULL,
+  `action` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `actions`
+--
+
+INSERT INTO `actions` (`id`, `controller`, `action`, `description`) VALUES
+(144, 'accesses', 'index', 'Вывод страницы с информацией о видах доступа'),
+(145, 'accesses', 'add', 'Добавление вида доступа'),
+(146, 'accesses', 'delete', 'Удаление вида доступа'),
+(147, 'accesses', 'correct', 'Корректировка вида доступа'),
+(148, 'countries', 'index', 'Вывод страницы с информацией о странах'),
+(149, 'countries', 'add', 'Добавление в справочник страны'),
+(150, 'countries', 'delete', 'Удаление из справочника страны'),
+(151, 'countries', 'correct', 'Корректировка страны в справочнике'),
+(152, 'departments', 'index', 'Вывод страницы с информацией о подразделениях'),
+(153, 'departments', 'add', 'Добавление в справочник подразделения'),
+(154, 'departments', 'delete', 'Удаление из справочника подразделения'),
+(155, 'departments', 'correct', 'Корректировка подразделения в справочнике'),
+(156, 'employees', 'index', 'Вывод страницы с информацией о сотрудниках'),
+(157, 'employees', 'login', 'Форма входа пользователя'),
+(158, 'employees', 'logout', 'Выход из приложения'),
+(159, 'main', 'index', 'Главная страница приложения'),
+(160, 'positions', 'index', 'Вывод страницы с должностями'),
+(161, 'positions', 'add', 'Добавление в справочник должности'),
+(162, 'positions', 'delete', 'Удаление должности из справочника'),
+(163, 'positions', 'correct', 'Корректировка должности в справочнике'),
+(167, 'accesses', 'saveAccesses', 'Сохранение распределения доступа к разделам приложения'),
+(168, 'test', 'test', ''),
+(169, 'accesses', 'correctsActuob', ''),
+(170, 'accesses', 'corrects', ''),
+(171, 'accesses', 'correctAct', 'Корректировка описания допустимых действий в приложении');
 
 -- --------------------------------------------------------
 
@@ -141,33 +248,31 @@ INSERT INTO `client_codes` (`clien_codes_id`, `clien_code`, `clients_id`, `note`
 CREATE TABLE `countries` (
   `id` int(10) UNSIGNED NOT NULL,
   `country` varchar(255) DEFAULT NULL COMMENT 'страна',
-  `note` varchar(255) DEFAULT NULL COMMENT 'примечание',
-  `visiable` tinyint(3) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'признак видимости',
-  `temp1` int(11) NOT NULL DEFAULT '0' COMMENT 'темп1'
+  `visiable` tinyint(3) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'признак видимости'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Страны';
 
 --
 -- Дамп данных таблицы `countries`
 --
 
-INSERT INTO `countries` (`id`, `country`, `note`, `visiable`, `temp1`) VALUES
-(1, 'Беларусь', '', 1, 0),
-(2, 'Германия', '', 0, 0),
-(3, 'Литва', '', 1, 0),
-(4, 'Россия', '', 1, 0),
-(6, 'Латвия', '', 1, 0),
-(7, 'Украина', '', 1, 0),
-(8, 'Китай', '', 0, 0),
-(9, 'Польша', '', 0, 0),
-(10, 'Эстония', '', 0, 0),
-(11, 'Казахстан', '', 1, 0),
-(12, 'Молдова', '', 0, 0),
-(23, 'Зимбабве', NULL, 0, 0),
-(25, 'Мадагаскар', NULL, 0, 0),
-(26, 'Япония', '', 0, 0),
-(28, 'страна 2', 'примечание 2', 0, 0),
-(29, NULL, NULL, 0, 0),
-(30, 'Мадагоскар', '', 1, 0);
+INSERT INTO `countries` (`id`, `country`, `visiable`) VALUES
+(1, 'Беларусь', 1),
+(2, 'Германия', 1),
+(3, 'Литва', 1),
+(4, 'Россия', 1),
+(6, 'Латвия', 1),
+(7, 'Украина', 1),
+(8, 'Китай', 1),
+(9, 'Польша', 1),
+(10, 'Эстония', 1),
+(11, 'Казахстан', 1),
+(12, 'Молдова', 1),
+(23, 'Зимбабве', 1),
+(25, 'Мадагаскар', 1),
+(26, 'Япония', 1),
+(31, 'Вьетнам', 1),
+(32, 'Куба', 1),
+(33, 'Азербайджан', 1);
 
 -- --------------------------------------------------------
 
@@ -201,32 +306,26 @@ CREATE TABLE `departments` (
   `id` int(10) UNSIGNED NOT NULL,
   `department` varchar(255) NOT NULL COMMENT 'краткое наименование подразделения',
   `department_full` varchar(255) NOT NULL COMMENT 'полное наименование подразделения',
-  `note` varchar(255) NOT NULL COMMENT 'примечание',
-  `visiable` tinyint(3) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'признак видимости',
-  `temp1` int(11) NOT NULL DEFAULT '0' COMMENT 'темп1'
+  `visiable` tinyint(3) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'признак видимости'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Структурные подразделения БТЛЦ';
 
 --
 -- Дамп данных таблицы `departments`
 --
 
-INSERT INTO `departments` (`id`, `department`, `department_full`, `note`, `visiable`, `temp1`) VALUES
-(1, 'ОПКП', 'Отдел продаж контейнерных перевозок', '', 1, 0),
-(2, 'ОКП', 'Отдел по организации контейнерных перевозок', '', 1, 0),
-(3, 'ОПСГ', 'Отдел по организации перевозок скоропортящихся грузов', '', 1, 0),
-(4, 'ТЭО', 'Отдел транспортно-экспедиционного обслуживания', '', 1, 0),
-(5, 'ОМЛ', 'Отдел маркетинга и логистики', '', 1, 0),
-(6, 'ООУ', 'Отдел оперативного управления', '', 1, 0),
-(7, 'ООТО', 'Отдел организации таможенного оформления', '', 1, 0),
-(8, 'БТЛЦ Гродно', 'Гродненский филиал БТЛЦ', '', 1, 0),
-(9, 'БТЛЦ Брест', 'Брестский филиал БТЛЦ', '', 1, 0),
-(10, 'БТЛЦ Гомель', 'Гомельский филиал БТЛЦ', '', 1, 0),
-(11, 'БТЛЦ Могилев', 'Могилевский филиал БТЛЦ', '', 1, 0),
-(12, 'БТЛЦ Витебск', 'Витебский филиал БТЛЦ', '', 1, 0),
-(13, 'долдлод', 'олдолд', '', 0, 0),
-(14, 'вывфыв', 'вфывфывфывыф', '', 0, 0),
-(15, 'вфыв', 'вфывфывфывыфвфы', '', 0, 0),
-(16, 'dasdasd', 'dasdasdasdsda', '', 1, 0);
+INSERT INTO `departments` (`id`, `department`, `department_full`, `visiable`) VALUES
+(1, 'ОПКП', 'Отдел продаж контейнерных перевозок', 1),
+(2, 'ОКП', 'Отдел по организации контейнерных перевозок', 1),
+(3, 'ОПСГ', 'Отдел по организации перевозок скоропортящихся грузов', 1),
+(4, 'ТЭО', 'Отдел транспортно-экспедиционного обслуживания', 1),
+(5, 'ОМЛ', 'Отдел маркетинга и логистики', 1),
+(6, 'ООУ', 'Отдел оперативного управления', 1),
+(7, 'ООТО', 'Отдел организации таможенного оформления', 1),
+(8, 'БТЛЦ Гродно', 'Гродненский филиал БТЛЦ', 1),
+(9, 'БТЛЦ Брест', 'Брестский филиал БТЛЦ', 1),
+(10, 'БТЛЦ Гомель', 'Гомельский филиал БТЛЦ', 1),
+(11, 'БТЛЦ Могилев', 'Могилевский филиал БТЛЦ', 1),
+(12, 'БТЛЦ Витебск', 'Витебский филиал БТЛЦ', 1);
 
 -- --------------------------------------------------------
 
@@ -236,40 +335,42 @@ INSERT INTO `departments` (`id`, `department`, `department_full`, `note`, `visia
 
 CREATE TABLE `employees` (
   `id` int(10) UNSIGNED NOT NULL,
-  `employee` varchar(255) NOT NULL COMMENT 'ФИО исполнителя',
+  `employee_name` varchar(255) NOT NULL COMMENT 'Имя исполнителя',
+  `employee_surname` varchar(255) NOT NULL COMMENT 'Фамилия исполнителяя',
+  `employee_middlename` varchar(255) NOT NULL COMMENT 'Отчество исполнителя',
   `departments_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы departments',
   `positions_id` int(10) UNSIGNED NOT NULL COMMENT 'foring key для таблицы positions',
   `email` varchar(255) NOT NULL,
   `mobil_phone` varchar(255) NOT NULL COMMENT 'номер мобильного телефона',
   `work_phone` varchar(255) NOT NULL COMMENT 'номер рабочего телефона',
-  `note` varchar(255) NOT NULL COMMENT 'примечание',
-  `visiable` tinyint(3) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'признак видимости',
-  `temp1` int(11) NOT NULL DEFAULT '0' COMMENT 'темп1'
+  `password` varchar(255) NOT NULL COMMENT 'пароль зарегистрированного пользователя',
+  `accesses_id` tinyint(3) UNSIGNED NOT NULL,
+  `visiable` tinyint(3) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'признак видимости'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `employees`
 --
 
-INSERT INTO `employees` (`id`, `employee`, `departments_id`, `positions_id`, `email`, `mobil_phone`, `work_phone`, `note`, `visiable`, `temp1`) VALUES
-(1, 'Ширинга Алексей Викторович', 2, 2, 'avs@belint.by', '+375296078838', '+375172251270', '', 1, 0),
-(2, 'Гейлаш Александр Александрович', 1, 1, 'a.heilash@belint.by', '+375295258439', '+375172251171', '', 1, 0),
-(3, 'Павлова Оксана Викторовна', 2, 2, 'o.pavlova@belint.by', '', '+375 17 225 12 70', '', 1, 0),
-(4, 'Лизун Наталья Владимировна', 4, 3, 'lizun@belint.by', '', '+375 17 225 14 93', '', 1, 0),
-(5, 'Капировская Наталья Сергеевна', 2, 3, 'nsk@belint.by', '', '+375 17 225 40 21', '', 1, 0),
-(6, 'Кедич Елена Сергеевна', 2, 4, 'esk@belint.by', '', '', '', 1, 0),
-(7, 'Левитан Людмила Владимировна', 2, 4, 'l.levitan@belint.by', '', '+375 17 225 28 88', '', 1, 0),
-(8, 'Боярчук Марина Александровна', 2, 4, 'bma@belint.by', '', '+375 17 225 30 93', '', 1, 0),
-(9, 'Дулуб Диана Сергеевна', 2, 4, 'dulub@belint.by', '', '+375 17 225 28 87', '', 1, 0),
-(10, 'Мацкевич Лариса', 5, 4, 'larisa@belint.by', '', '+375 17 225 39 17', '', 1, 0),
-(11, 'Архипова Светлана Сергеевна', 5, 4, 'ss@belint.by', '', '+375 17 225 28 27', '', 1, 0),
-(12, 'Литвинко Наталья Александровна', 5, 2, 'ln@belint.by', '', '+375 17 225 24 33', '', 1, 0),
-(13, 'Юницкая Татьяна Юрьевна', 1, 4, 't.yunitskaya@belint.by', '', '+375 17 225 25 19', '', 1, 0),
-(14, 'Шереш Сергей Михайлович', 1, 4, 'sheresh.s@belint.by', '', '+375 17 225 30 56', '', 1, 0),
-(15, 'Шмидт Ирина Викторовна', 1, 4, 'i.shmidt@belint.by', '', '+375 17 225 30 56', '', 1, 0),
-(16, 'Васильченко Юлия Сергеевна', 1, 4, '', '', '', '', 1, 0),
-(17, 'Митилович Виктор Николаевич', 1, 4, '', '', '', '', 1, 0),
-(18, 'Колодник Ольга Сергеевна', 1, 5, '', '', '', '', 1, 0);
+INSERT INTO `employees` (`id`, `employee_name`, `employee_surname`, `employee_middlename`, `departments_id`, `positions_id`, `email`, `mobil_phone`, `work_phone`, `password`, `accesses_id`, `visiable`) VALUES
+(1, 'Алексей', 'Ширинга', 'Викторович', 2, 2, 'avs@belint.by', '+375296078838', '+375172251270', '12345', 1, 1),
+(2, 'Александр', 'Гейлаш', 'Александрович', 1, 1, 'a.heilash@belint.by', '+375295258439', '+375172251171', '12345', 1, 1),
+(3, 'Оксана', 'Павлова', 'Викторовна', 2, 2, 'o.pavlova@belint.by', '', '+375 17 225 12 70', '', 1, 1),
+(4, 'Наталья', 'Лизун', 'Владимировна', 4, 3, 'lizun@belint.by', '', '+375 17 225 14 93', '', 1, 1),
+(5, 'Капировская Наталья Сергеевна', '', '', 2, 3, 'nsk@belint.by', '', '+375 17 225 40 21', '', 1, 1),
+(6, 'Кедич Елена Сергеевна', '', '', 2, 4, 'esk@belint.by', '', '', '', 1, 1),
+(7, 'Левитан Людмила Владимировна', '', '', 2, 4, 'l.levitan@belint.by', '', '+375 17 225 28 88', '', 1, 1),
+(8, 'Боярчук Марина Александровна', '', '', 2, 4, 'bma@belint.by', '', '+375 17 225 30 93', '', 1, 1),
+(9, 'Дулуб Диана Сергеевна', '', '', 2, 4, 'dulub@belint.by', '', '+375 17 225 28 87', '', 1, 1),
+(10, 'Мацкевич Лариса', '', '', 5, 4, 'larisa@belint.by', '', '+375 17 225 39 17', '', 1, 1),
+(11, 'Архипова Светлана Сергеевна', '', '', 5, 4, 'ss@belint.by', '', '+375 17 225 28 27', '', 1, 1),
+(12, 'Литвинко Наталья Александровна', '', '', 5, 2, 'ln@belint.by', '', '+375 17 225 24 33', '', 1, 1),
+(13, 'Юницкая Татьяна Юрьевна', '', '', 1, 4, 't.yunitskaya@belint.by', '', '+375 17 225 25 19', '', 1, 1),
+(14, 'Шереш Сергей Михайлович', '', '', 1, 4, 'sheresh.s@belint.by', '', '+375 17 225 30 56', '', 1, 1),
+(15, 'Шмидт Ирина Викторовна', '', '', 1, 4, 'i.shmidt@belint.by', '', '+375 17 225 30 56', '', 1, 1),
+(16, 'Васильченко Юлия Сергеевна', '', '', 1, 4, '', '', '', '', 1, 1),
+(17, 'Митилович Виктор Николаевич', '', '', 1, 4, '', '', '', '', 1, 1),
+(18, 'Колодник Ольга Сергеевна', '', '', 1, 5, '', '', '', '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -289,13 +390,20 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `title`, `link`, `parent_id`) VALUES
-(2, 'Main', 'main', 0),
-(3, 'Directories', 'directories', 0),
-(4, 'Countries', 'countries', 3),
-(5, 'Departments', 'departments', 3),
-(6, 'Positions', 'positions', 3),
-(7, 'Employees', 'employees', 3),
-(8, 'same', 'same', 5);
+(2, 'Главная', 'main', 0),
+(3, 'Справочники', 'directories', 0),
+(4, 'Страны', 'countries', 3),
+(5, 'Структрурные подразделения', 'departments', 3),
+(6, 'Должности', 'positions', 3),
+(7, 'Сотрудники', 'employees', 3),
+(10, 'Клиенты', NULL, 0),
+(13, 'договорные', NULL, 10),
+(14, 'не договорные', NULL, 10),
+(15, 'Провайдеры', NULL, 0),
+(16, 'договорные', NULL, 15),
+(17, 'не договорные', NULL, 15),
+(18, 'Виды доступа', 'accesses', 3),
+(20, 'Login', 'employees/login', 0);
 
 -- --------------------------------------------------------
 
@@ -340,7 +448,9 @@ INSERT INTO `positions` (`id`, `position`, `visiable`) VALUES
 (4, 'инженер', 1),
 (5, 'специалист по работе с клиентами', 1),
 (6, 'ведущий инженер', 1),
-(75, 'инженер5', 1);
+(75, 'инженер5', 0),
+(76, 'инженер7', 0),
+(77, 'fsdfsdf', 0);
 
 -- --------------------------------------------------------
 
@@ -514,6 +624,24 @@ INSERT INTO `status_codes` (`status_codes_id`, `status_code`, `note`, `visiable`
 --
 
 --
+-- Индексы таблицы `accesses`
+--
+ALTER TABLE `accesses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `accesses_actions`
+--
+ALTER TABLE `accesses_actions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `actions`
+--
+ALTER TABLE `actions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `clients`
 --
 ALTER TABLE `clients`
@@ -575,7 +703,8 @@ ALTER TABLE `departments`
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`),
   ADD KEY `departments_id` (`departments_id`),
-  ADD KEY `positions_id` (`positions_id`);
+  ADD KEY `positions_id` (`positions_id`),
+  ADD KEY `accesses_id` (`accesses_id`);
 
 --
 -- Индексы таблицы `menu`
@@ -643,6 +772,21 @@ ALTER TABLE `status_codes`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `accesses`
+--
+ALTER TABLE `accesses`
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT для таблицы `accesses_actions`
+--
+ALTER TABLE `accesses_actions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=789;
+--
+-- AUTO_INCREMENT для таблицы `actions`
+--
+ALTER TABLE `actions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
+--
 -- AUTO_INCREMENT для таблицы `clients`
 --
 ALTER TABLE `clients`
@@ -666,7 +810,7 @@ ALTER TABLE `client_codes`
 -- AUTO_INCREMENT для таблицы `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT для таблицы `currencies`
 --
@@ -676,7 +820,7 @@ ALTER TABLE `currencies`
 -- AUTO_INCREMENT для таблицы `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT для таблицы `employees`
 --
@@ -686,7 +830,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT для таблицы `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT для таблицы `method_of_obtaining`
 --
@@ -696,7 +840,7 @@ ALTER TABLE `method_of_obtaining`
 -- AUTO_INCREMENT для таблицы `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 --
 -- AUTO_INCREMENT для таблицы `providers`
 --
@@ -763,7 +907,8 @@ ALTER TABLE `client_codes`
 --
 ALTER TABLE `employees`
   ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`departments_id`) REFERENCES `departments` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`positions_id`) REFERENCES `positions` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`positions_id`) REFERENCES `positions` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `employees_ibfk_3` FOREIGN KEY (`accesses_id`) REFERENCES `accesses` (`id`) ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `providers`
