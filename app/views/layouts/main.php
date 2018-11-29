@@ -25,285 +25,288 @@
         <div class="loader"></div>
     </div>
     <!-- preloader area end -->
-    <!-- page container area start -->
-    <div class="page-container">
-        <!-- sidebar menu area start -->
-        <div class="sidebar-menu">
-            <div class="sidebar-header">
-                <div class="logo">
-                    <a href="/"><img src="/images/icon/logo.png" alt="logo"></a>
+    <? if(!isset($_SESSION['employee'])):?>
+        <?=$content;?>
+    <? else:?>
+        <!-- page container area start -->
+        <div class="page-container">
+            <!-- sidebar menu area start -->
+            <div class="sidebar-menu">
+                <div class="sidebar-header">
+                    <div class="logo">
+                        <a href="/"><img src="/images/icon/logo.png" alt="logo"></a>
+                    </div>
+                </div>
+                <div class="main-menu">
+                    <div class="menu-inner">
+                        <nav>
+                            <ul class="metismenu" id="menu">
+                                <? new \app\widgets\menu\Menu([
+                                    'cache' => 0,
+                                ]);?>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
-            <div class="main-menu">
-                <div class="menu-inner">
-                    <nav>
-                        <ul class="metismenu" id="menu">
-                            <? new \app\widgets\menu\Menu([
-                                'cache' => 0,
-                            ]);?>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <!-- sidebar menu area end -->
-        <!-- main content area start -->
-        <div class="main-content">
+            <!-- sidebar menu area end -->
+            <!-- main content area start -->
+            <div class="main-content">
                 <? if(DEBUG):?>
-                <div class="container">
-                    <div id="debager">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="alert-danger">
-                                    <h4 class="header-title">DEBUG SQL QUERIES</h4>
-                                    <p class="alert-danger">
-                                        <?php
-                                        $logs = \R::getDatabaseAdapter()->getDatabase()->getLogger();
-                                        btlc\libs\Debug::arr($logs->grep('SELECT'));
-                                        ?>
-                                    </p>
+                    <div class="container">
+                        <div id="debager">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="alert-danger">
+                                        <h4 class="header-title">DEBUG SQL QUERIES</h4>
+                                        <p class="alert-danger">
+                                            <?php
+                                            $logs = \R::getDatabaseAdapter()->getDatabase()->getLogger();
+                                            btlc\libs\Debug::arr($logs->grep('SELECT'));
+                                            ?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="alert-danger">
+                                        <h4 class="header-title">POST</h4>
+                                        <p class="alert-danger">
+                                            <?=btlc\libs\Debug::arr($_POST);?>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="alert-danger">
-                                    <h4 class="header-title">POST</h4>
-                                    <p class="alert-danger">
-                                        <?=btlc\libs\Debug::arr($_POST);?>
-                                    </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="alert-danger">
+                                        <h4 class="header-title">GET</h4>
+                                        <p class="alert-danger">
+                                            <?=btlc\libs\Debug::arr($_GET);?>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="alert-danger">
-                                    <h4 class="header-title">GET</h4>
-                                    <p class="alert-danger">
-                                        <?=btlc\libs\Debug::arr($_GET);?>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="alert-danger">
-                                    <h4 class="header-title">SESSION</h4>
-                                    <p class="alert-danger">
-                                        <?=btlc\libs\Debug::arr($_SESSION);?>
-                                    </p>
+                                <div class="col-md-6">
+                                    <div class="alert-danger">
+                                        <h4 class="header-title">SESSION</h4>
+                                        <p class="alert-danger">
+                                            <?=btlc\libs\Debug::arr($_SESSION);?>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 <?endif;?>
-            <!-- header area start -->
-            <div class="header-area">
-                <div class="row align-items-center">
-                    <!-- nav and search button -->
-                    <div class="col-md-6 col-sm-8 clearfix">
-                        <div class="nav-btn pull-left">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                <!-- header area start -->
+                <div class="header-area">
+                    <div class="row align-items-center">
+                        <!-- nav and search button -->
+                        <div class="col-md-6 col-sm-8 clearfix">
+                            <div class="nav-btn pull-left">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="search-box pull-left">
+                                <form action="#">
+                                    <input type="text" name="search" placeholder="Search..." required>
+                                    <i class="ti-search"></i>
+                                </form>
+                            </div>
                         </div>
-                        <div class="search-box pull-left">
-                            <form action="#">
-                                <input type="text" name="search" placeholder="Search..." required>
-                                <i class="ti-search"></i>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- profile info & task notification -->
-                    <div class="col-md-6 col-sm-4 clearfix">
-                        <ul class="notification-area pull-right">
-                            <li id="full-view"><i class="ti-fullscreen"></i></li>
-                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
-                            <li class="dropdown">
-                                <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
-                                    <span>2</span>
-                                </i>
-                                <div class="dropdown-menu bell-notify-box notify-box">
-                                    <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
-                                    <div class="nofity-list">
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
-                                            <div class="notify-text">
-                                                <p>You have Changed Your Password</p>
-                                                <span>Just Now</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
-                                            <div class="notify-text">
-                                                <p>New Commetns On Post</p>
-                                                <span>30 Seconds ago</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-key btn-primary"></i></div>
-                                            <div class="notify-text">
-                                                <p>Some special like you</p>
-                                                <span>Just Now</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
-                                            <div class="notify-text">
-                                                <p>New Commetns On Post</p>
-                                                <span>30 Seconds ago</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-key btn-primary"></i></div>
-                                            <div class="notify-text">
-                                                <p>Some special like you</p>
-                                                <span>Just Now</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
-                                            <div class="notify-text">
-                                                <p>You have Changed Your Password</p>
-                                                <span>Just Now</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
-                                            <div class="notify-text">
-                                                <p>You have Changed Your Password</p>
-                                                <span>Just Now</span>
-                                            </div>
-                                        </a>
+                        <!-- profile info & task notification -->
+                        <div class="col-md-6 col-sm-4 clearfix">
+                            <ul class="notification-area pull-right">
+                                <li id="full-view"><i class="ti-fullscreen"></i></li>
+                                <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                                <li class="dropdown">
+                                    <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
+                                        <span>2</span>
+                                    </i>
+                                    <div class="dropdown-menu bell-notify-box notify-box">
+                                        <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
+                                        <div class="nofity-list">
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
+                                                <div class="notify-text">
+                                                    <p>You have Changed Your Password</p>
+                                                    <span>Just Now</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
+                                                <div class="notify-text">
+                                                    <p>New Commetns On Post</p>
+                                                    <span>30 Seconds ago</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb"><i class="ti-key btn-primary"></i></div>
+                                                <div class="notify-text">
+                                                    <p>Some special like you</p>
+                                                    <span>Just Now</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb"><i class="ti-comments-smiley btn-info"></i></div>
+                                                <div class="notify-text">
+                                                    <p>New Commetns On Post</p>
+                                                    <span>30 Seconds ago</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb"><i class="ti-key btn-primary"></i></div>
+                                                <div class="notify-text">
+                                                    <p>Some special like you</p>
+                                                    <span>Just Now</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
+                                                <div class="notify-text">
+                                                    <p>You have Changed Your Password</p>
+                                                    <span>Just Now</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
+                                                <div class="notify-text">
+                                                    <p>You have Changed Your Password</p>
+                                                    <span>Just Now</span>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li class="dropdown">
-                                <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
-                                <div class="dropdown-menu notify-box nt-enveloper-box">
-                                    <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
-                                    <div class="nofity-list">
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <img src="assets/images/author/author-img1.jpg" alt="image">
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">Hey I am waiting for you...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <img src="assets/images/author/author-img2.jpg" alt="image">
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">When you can connect with me...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <img src="assets/images/author/author-img3.jpg" alt="image">
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">I missed you so much...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <img src="assets/images/author/author-img4.jpg" alt="image">
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">Your product is completely Ready...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <img src="assets/images/author/author-img2.jpg" alt="image">
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">Hey I am waiting for you...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <img src="assets/images/author/author-img1.jpg" alt="image">
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">Hey I am waiting for you...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <img src="assets/images/author/author-img3.jpg" alt="image">
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">Hey I am waiting for you...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
+                                </li>
+                                <li class="dropdown">
+                                    <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
+                                    <div class="dropdown-menu notify-box nt-enveloper-box">
+                                        <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
+                                        <div class="nofity-list">
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb">
+                                                    <img src="assets/images/author/author-img1.jpg" alt="image">
+                                                </div>
+                                                <div class="notify-text">
+                                                    <p>Aglae Mayer</p>
+                                                    <span class="msg">Hey I am waiting for you...</span>
+                                                    <span>3:15 PM</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb">
+                                                    <img src="assets/images/author/author-img2.jpg" alt="image">
+                                                </div>
+                                                <div class="notify-text">
+                                                    <p>Aglae Mayer</p>
+                                                    <span class="msg">When you can connect with me...</span>
+                                                    <span>3:15 PM</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb">
+                                                    <img src="assets/images/author/author-img3.jpg" alt="image">
+                                                </div>
+                                                <div class="notify-text">
+                                                    <p>Aglae Mayer</p>
+                                                    <span class="msg">I missed you so much...</span>
+                                                    <span>3:15 PM</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb">
+                                                    <img src="assets/images/author/author-img4.jpg" alt="image">
+                                                </div>
+                                                <div class="notify-text">
+                                                    <p>Aglae Mayer</p>
+                                                    <span class="msg">Your product is completely Ready...</span>
+                                                    <span>3:15 PM</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb">
+                                                    <img src="assets/images/author/author-img2.jpg" alt="image">
+                                                </div>
+                                                <div class="notify-text">
+                                                    <p>Aglae Mayer</p>
+                                                    <span class="msg">Hey I am waiting for you...</span>
+                                                    <span>3:15 PM</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb">
+                                                    <img src="assets/images/author/author-img1.jpg" alt="image">
+                                                </div>
+                                                <div class="notify-text">
+                                                    <p>Aglae Mayer</p>
+                                                    <span class="msg">Hey I am waiting for you...</span>
+                                                    <span>3:15 PM</span>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="notify-item">
+                                                <div class="notify-thumb">
+                                                    <img src="assets/images/author/author-img3.jpg" alt="image">
+                                                </div>
+                                                <div class="notify-text">
+                                                    <p>Aglae Mayer</p>
+                                                    <span class="msg">Hey I am waiting for you...</span>
+                                                    <span>3:15 PM</span>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li class="settings-btn">
-                                <i class="ti-settings"></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- header area end -->
-            <!-- page title area start -->
-            <div class="page-title-area">
-                <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <div class="breadcrumbs-area clearfix">
-                            <h4 class="page-title pull-left">OPKP</h4>
-                            <ul class="breadcrumbs pull-left">
-                                <li><a href="<?=PATH;?>">Главная</a></li>
-                                <li><span>Dashboard</span></li>
+                                </li>
+                                <li class="settings-btn">
+                                    <a href="/employees/logout"><i class="fa fa-2x fa-sign-out"></i></a>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-6 clearfix">
-
-                    </div>
                 </div>
-            </div>
-            <!-- page title area end -->
-            <div class="main-content-inner">
-                <!-- dismiss alert area start -- todo добавить вывод из сессии-->
-                <? if(isset($_SESSION['msg'])):?>
-                    <div class="alert-dismiss mt-3">
-                        <div class="alert alert-<?=$_SESSION['msg']['result'];?> alert-dismissible fade show" role="alert">
-                            <strong><i class="fa fa-exclamation-circle"></i> Attention!</strong> <?=$_SESSION['msg']['text'];?>.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span></button>
+                <!-- header area end -->
+                <!-- page title area start -->
+                <div class="page-title-area">
+                    <div class="row align-items-center">
+                        <div class="col-sm-6">
+                            <div class="breadcrumbs-area clearfix">
+                                <h4 class="page-title pull-left">OPKP</h4>
+                                <ul class="breadcrumbs pull-left">
+                                    <li><a href="<?=PATH;?>">Главная</a></li>
+                                    <li><span>Dashboard</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 clearfix">
+
                         </div>
                     </div>
-                    <? unset($_SESSION['msg']);?>
-                <? endif;?>
-                <!-- dismiss alert area end -->
-                <?=$content;?>
+                </div>
+                <!-- page title area end -->
+                <div class="main-content-inner">
+                    <!-- dismiss alert area start -- todo добавить вывод из сессии-->
+                    <? if(isset($_SESSION['msg'])):?>
+                        <div class="alert-dismiss mt-3">
+                            <div class="alert alert-<?=$_SESSION['msg']['result'];?> alert-dismissible fade show" role="alert">
+                                <strong><i class="fa fa-exclamation-circle"></i> Attention!</strong> <?=$_SESSION['msg']['text'];?>.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span></button>
+                            </div>
+                        </div>
+                        <? unset($_SESSION['msg']);?>
+                    <? endif;?>
+                    <!-- dismiss alert area end -->
+                    <?=$content;?>
+                </div>
             </div>
+            <!-- main content area end -->
+            <!-- footer area start-->
+            <footer>
+                <div class="footer-area">
+                    <p>© Приложение является собственностью ЦКП БТЛЦ</p>
+                </div>
+            </footer>
+            <!-- footer area end-->
         </div>
-        <!-- main content area end -->
-        <!-- footer area start-->
-        <footer>
-            <div class="footer-area">
-                <p>© Приложение разработано отделом продаж контейнерных перевозок ЦКП БТЛЦ</p>
-            </div>
-        </footer>
-        <!-- footer area end-->
-    </div>
-
+    <?endif;?>
     <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="/js/vendor/jquery-2.2.4.min.js"></script>
     <script src="/js/popper.min.js"></script>

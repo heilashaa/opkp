@@ -6,25 +6,32 @@ use app\models\AppModel;
 use btlc\App;
 use btlc\base\Controller;
 use btlc\Cache;
-use btlc\libs\Debug;
 use RedBeanPHP\R;
 
 class AppController extends Controller {
+
+    /**
+     * @var bool | array хранит или сессию с данными пользователя либо false
+     */
+    protected $employee = false;
 
     public function __construct($route) {
         parent::__construct($route);
         new AppModel();
         App::$app->setProperty('menu', self::cacheMenu());
+        App::$app->setProperty('accesses', self::cacheAccesses());
+        $this->setEmployee();
+        $this->checkEmployeeAccess();
     }
 
     /**
      * @return array|bool формирует кэш меню
      */
-    public static function cacheMenu(){
+    public static function cacheMenu($time = 3600){
         $menu = Cache::get('menu');
         if(!$menu){
             $menu = R::getAssoc("SELECT * FROM menu");
-            Cache::set('menu', $menu);
+            Cache::set('menu', $menu, $time);
         }
         return $menu;
     }
@@ -34,13 +41,15 @@ class AppController extends Controller {
      * @param string $result
      * @param string $msg
      */
-    protected function redirect($http = false, $result = 'danger', $msg = 'default message')    {
+    protected function redirect($http = false, $result = 'danger', $msg = 'Что-то пошло не так', $posting = true)    {
         if ($http) {
             $redirect = $http;
         } else {
             $redirect = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : PATH;
         }
-        $this->setSessionMsg($result, $msg);
+        if($posting){
+            $this->setSessionMsg($result, $msg);
+        }
         header("Location: $redirect");
         exit;
     }
@@ -91,47 +100,53 @@ class AppController extends Controller {
         return false;
     }
 
-
-
-    //////////////////////////////////////////////
-
-    /**
-     * @var bool | array хранит или сессию с данными пользователя либо false
-     */
-    protected $employee = false;
-
     /**
      * @return array|bool формирует кэш видов доступа
      */
-    protected function cacheAccesses(){
+    protected function cacheAccesses($time = 3600){
         $accesses = Cache::get('accesses');
         if(!$accesses){
-            $accesses = R::find('accesses');
-//            Debug::arr($accesses);
-//            exit;
-            $actions = $accesses->sharedActions;
-            Debug::arr($actions);
-
-            exit;
-            Cache::set('accesses', $accesses);
+            $ids = R::getAssoc('SELECT id FROM accesses');
+            $result = [];
+            foreach ($ids as $id){
+                $accesses = R::load('accesses', $id)->sharedActions;
+                foreach ($accesses as $key => $access){
+                    $result[$id][$access->controller][] = $access->action;
+                }
+            }
+            Cache::set('accesses', $result, $time);
+            $accesses = $result;
         }
         return $accesses;
     }
 
+    /**
+     * метод проверки прав доступа пользователя. Допускает залогиненого пользователя только к открытым для его роли страницам.
+     * Не залогининых пользователей редиректит на login страницу
+     */
     public function checkEmployeeAccess(){
-        $this->setEmployee();//в конструктор
-        if(is_array($this->getEmployee())){
-            $result = R::findOne('table');
-            if($result/*запрос в базу и проверка на наличие доступа для employee по controller и action*/){
-                return true;
+        $employee = $this->getEmployee();
+        if(is_array($employee)){
+            if($this->action == 'login' && mb_strtolower($this->controller) == 'employees'){
+                $this->redirect('/','','',false);
+            }
+            $accesses = App::$app->getProperty('accesses');
+            if(isset($accesses[$employee['accesses_id']][mb_strtolower($this->controller)]) && in_array($this->action, $accesses[$employee['accesses_id']][mb_strtolower($this->controller)])){
+                return;
             }else{
                 $this->redirect(false, 'danger', 'У вас не достаточно прав для посещения этой страницы или выполнения действия');
             }
         }else{
-            $this->redirect('/employees/login');
+            if($this->action == 'login' && mb_strtolower($this->controller) == 'employees'){
+                return;
+            }
+            $this->redirect('/employees/login','','', false);
         }
     }
 
+    /**
+     * записывает в свойство $this->employee $_SESSION[employee]
+     */
     protected function setEmployee(){
         if(isset($_SESSION['employee'])){
             $this->employee = $_SESSION['employee'];
@@ -139,7 +154,7 @@ class AppController extends Controller {
         return;
     }
 
-    protected function getEmployee(){
+    public function getEmployee(){
         return $this->employee;
     }
 

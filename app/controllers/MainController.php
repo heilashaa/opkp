@@ -3,15 +3,12 @@
 namespace app\controllers;
 
 use btlc\App;
+use btlc\libs\Debug;
 use RedBeanPHP\R;
 
 class MainController extends AppController {
 
     public function indexAction() {
-
-        $this->cacheAccesses();
-        exit;
-
         $clientsRequests = R::findAll('clients_requests');
         $this->setMeta(App::$app->getProperty('site_name'). 'Main', 'Главная', 'Сайт, бтлц');
         $this->set(compact('clientsRequests'));

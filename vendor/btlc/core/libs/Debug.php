@@ -8,4 +8,10 @@ class Debug {
         echo '<pre>'. print_r($arr, true) .'</pre>';
     }
 
+    public static function arrWithExit($arr){
+        echo '<pre>'. print_r($arr, true) .'</pre>';
+        exit;
+    }
+
+
 }

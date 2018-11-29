@@ -1,5 +1,14 @@
 <div class="login-area login-bg">
     <div class="container">
+        <? if(isset($_SESSION['msg'])):?>
+            <div class="alert-dismiss mt-0">
+                <div class="alert alert-<?=$_SESSION['msg']['result'];?> alert-dismissible fade show" role="alert">
+                    <strong><i class="fa fa-exclamation-circle"></i> Attention!</strong> <?=$_SESSION['msg']['text'];?>.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span></button>
+                </div>
+            </div>
+            <? unset($_SESSION['msg']);?>
+        <? endif;?>
         <div class="login-box ptb--100">
             <form action="login" method="post">
                 <div class="login-form-head">
