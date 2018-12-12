@@ -12,12 +12,7 @@
                         <input type="text" class="form-control" name="action" value="<?=$actions->action;?>" disabled>
                         <label for="validationCustom01">Описание действия</label>
                         <input type="text" class="form-control" id="validationCustom01" name="description" placeholder="Введите описание действия" value="<?=$actions->description;?>" required="" autocomplete="off">
-                        <div class="valid-feedback">
-                            ok
-                        </div>
-                        <div class="invalid-feedback">
-                            Заполните поле
-                        </div>
+                        <div class="invalid-feedback">Заполните поле</div>
                     </div>
                 <button name="submit" type="submit" class="btn btn-primary btn-flat btn-warning" value="Save">Сохранить</button>
                 <a href="/accesses" class="btn btn-secondary btn-flat">Назад</a>

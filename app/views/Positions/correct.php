@@ -7,13 +7,8 @@
                     <div class="col-md-12 mb-3">
                         <input type="hidden" name="id" value="<?=$positions->id?>">
                         <label for="validationCustom01">Должность</label>
-                        <input type="text" class="form-control" id="validationCustom01" name="position" placeholder="Введите должность" value="<?=$positions->position;?>" required="">
-                        <div class="valid-feedback">
-                            ok
-                        </div>
-                        <div class="invalid-feedback">
-                            Заполните поле
-                        </div>
+                        <input type="text" class="form-control" id="validationCustom01" name="position" placeholder="Введите должность" value="<?=$positions->position;?>" required="" autocomplete="off">
+                        <div class="invalid-feedback">Заполните поле</div>
                     </div>
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary btn-flat btn-warning" value="Save">Сохранить</button>

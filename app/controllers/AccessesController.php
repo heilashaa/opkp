@@ -6,8 +6,6 @@ use btlc\App;
 use btlc\libs\SiteUtils;
 use RedBeanPHP\R;
 
-//todo trim
-
 class AccessesController extends AppController {
     /**
      * action выводит все существующие в таблице записи с признаком visiable = 1
@@ -128,7 +126,7 @@ class AccessesController extends AppController {
      */
     public function addAction(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            if($_POST['submit'] && $_POST['access']){
+            if(SiteUtils::clear($_POST['submit']) && SiteUtils::clear($_POST['access'])){
                 $accesses = R::findOrCreate('accesses', ['access'=>SiteUtils::clear($_POST['access'])]);
                 if($accesses->hasChanged('id')){
                     $msg = "Вид доступа {$accesses->access} добавлен";
@@ -160,11 +158,11 @@ class AccessesController extends AppController {
                     $msg = "Вид доступа {$accesses->access} существует. Нельзя добать дубль";
                     $result = 'danger';
                 }
-                $this->redirect('/accesses', $result, $msg);
+                $this->redirect(false, $result, $msg);
             }else{
                 $_SESSION['post'] = $_POST;
                 $msg = "Заполните все необходимые поля";
-                $this->redirect('/accesses', 'danger', $msg);
+                $this->redirect(false, 'danger', $msg);
             }
         }else{
             throw new \Exception('Данные отправлены не методом POST',404);
@@ -194,7 +192,7 @@ class AccessesController extends AppController {
                         $result = 'danger';
                     }
                 }
-                $this->redirect('/accesses', $result, $msg);
+                $this->redirect(false, $result, $msg);
             }else{
                 throw new \Exception('Нет такой записи для удаления. Контроллер должен принять параметр id для удаления определнной записи',404);
             }
@@ -209,17 +207,17 @@ class AccessesController extends AppController {
      */
     public function correctAction(){
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
-            if(!empty($_POST['access'])) {
+            if(!empty(SiteUtils::clear($_POST['access']))) {
                 $accesses = R::load('accesses', SiteUtils::clear($_POST['id']));//изначальная версия записи
                 $matchAccesses = R::findOne('accesses', 'WHERE access = ?', [SiteUtils::clear($_POST['access'])]);//поиск на совпадения по полю access
                 if($matchAccesses){//есть совпадения
                     if($matchAccesses->id == SiteUtils::clear($_POST['id'])){//если новая версия совпадает с изначальной
                         if((isset($_POST['admin']) == 'on' && $accesses->admin == 1) || (!isset($_POST['admin']) && $accesses->admin == 0)){//checkbox не менялся
-                            $msg = "Вид доступа {$_POST['access']} не был откорректирована в базе данных, так как его название не было Вами изменено";
+                            $msg = "Вид доступа ".SiteUtils::clear($_POST['access'])." не был откорректирована в базе данных, так как его название не было Вами изменено";
                             $result = 'danger';
                             $path = false;
                         }elseif (!isset($_POST['admin'])){//убран checkbox
-                            $msg = "Вид доступа {$_POST['access']} не был откорректирована в базе данных, так как в приложении должен быть хоть один пользователь с максимальным доступом";
+                            $msg = "Вид доступа ".SiteUtils::clear($_POST['access'])." не был откорректирована в базе данных, так как в приложении должен быть хоть один пользователь с максимальным доступом";
                             $result = 'danger';
                             $path = false;
                         }else{//checkbox добавлен
@@ -229,12 +227,12 @@ class AccessesController extends AppController {
                             $accesses->admin = 1;
                             R::store($accesses);
                             $this->setAdminAccess($accesses->access);
-                            $msg = "Вид доступа {$_POST['access']} откорректирован на {$_POST['access']} с присвоением максимального доступа";
+                            $msg = "Вид доступа ".SiteUtils::clear($_POST['access'])." откорректирован на ".SiteUtils::clear($_POST['access'])." с присвоением максимального доступа";
                             $result = 'success';
                             $path = '/accesses';
                         }
                     }elseif($matchAccesses->visiable == 1){//если совпадает с другой существующей в базе записью
-                        $msg = "Вид доступа {$accesses->access} не был откорректирован на {$_POST['access']}, так как такой вид доступа {$_POST['access']} уже существует";
+                        $msg = "Вид доступа {$accesses->access} не был откорректирован на ".SiteUtils::clear($_POST['access']).", так как такой вид доступа ".SiteUtils::clear($_POST['access'])." уже существует";
                         $result = 'danger';
                         $path = false;
                     }else{//восстанавлиевает ранее удаленный в базе
@@ -246,13 +244,13 @@ class AccessesController extends AppController {
                             $matchAccesses->admin = 1;
                             R::store($matchAccesses);
                             $this->setAdminAccess($matchAccesses->access);
-                            $msg = "Вид доступа {$accesses->access} не был откорректирован на {$_POST['access']}, так как такой вид доступа {$_POST['access']} уже существует в удаленных записях. Вид доступа {$_POST['access']} восстановлен из удаленных записей с присвоением максимального доступа";
+                            $msg = "Вид доступа {$accesses->access} не был откорректирован на ".SiteUtils::clear($_POST['access']).", так как такой вид доступа ".SiteUtils::clear($_POST['access'])." уже существует в удаленных записях. Вид доступа ".SiteUtils::clear($_POST['access'])." восстановлен из удаленных записей с присвоением максимального доступа";
                             $result = 'success';
                             $path = '/accesses';
                         }else{//нет checkbox
                             $matchAccesses->visiable = 1;
                             R::store($matchAccesses);
-                            $msg = "Вид доступа {$accesses->access} не был откорректирован на {$_POST['access']}, так как такой вид доступа {$_POST['access']} уже существует в удаленных записях. Вид доступа {$_POST['access']} восстановлен из удаленных записей";
+                            $msg = "Вид доступа {$accesses->access} не был откорректирован на ".SiteUtils::clear($_POST['access']).", так как такой вид доступа ".SiteUtils::clear($_POST['access'])." уже существует в удаленных записях. Вид доступа ".SiteUtils::clear($_POST['access'])." восстановлен из удаленных записей";
                             $result = 'success';
                             $path = '/accesses';
                         }
@@ -263,7 +261,7 @@ class AccessesController extends AppController {
                         $oldAccess = $accesses->access;
                         $accesses->access = SiteUtils::clear($_POST['access']);
                         R::store($accesses);
-                        $msg = "Вид доступа {$oldAccess} откорректирован на {$_POST['access']}";
+                        $msg = "Вид доступа {$oldAccess} откорректирован на ".SiteUtils::clear($_POST['access']);
                         $result = 'success';
                         $path ='/accesses';
                     }elseif (isset($_POST['admin']) == 'on'){//поменялся на admin
@@ -275,7 +273,7 @@ class AccessesController extends AppController {
                         $accesses->admin = 1;
                         R::store($accesses);
                         $this->setAdminAccess($accesses->access);
-                        $msg = "Вид доступа {$oldAccess} откорректирован на {$_POST['access']} с присвоением максимального доступа";
+                        $msg = "Вид доступа {$oldAccess} откорректирован на ".SiteUtils::clear($_POST['access'])." с присвоением максимального доступа";
                         $result = 'success';
                         $path = '/accesses';
                     }else{//удален checkbox админа
@@ -288,7 +286,7 @@ class AccessesController extends AppController {
             }else{
                 $_SESSION['post'] = $_POST;
                 $msg = "Заполните все необходимые поля";
-                $this->redirect("/accesses/correct/?id = {$_POST['id']}", 'danger', $msg);
+                $this->redirect(false, 'danger', $msg);
             }
         }
         if(isset($_GET['id']) && is_numeric($_GET['id'])){
@@ -308,30 +306,30 @@ class AccessesController extends AppController {
      */
     public function correctActAction(){
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
-            if(!empty($_POST['description'])) {
+            if(!empty(SiteUtils::clear($_POST['description']))) {
                 $actions = R::load('actions', SiteUtils::clear($_POST['id']));
                 $matchActions = R::findOne('actions', 'WHERE description = ?', [SiteUtils::clear($_POST['description'])]);
                 if($matchActions){
-                    if($matchActions->id == $_POST['id']){
-                        $msg = "Описание допустимого действия {$_POST['description']} не было откорректировано в базе данных, так как его название не было Вами изменено";
+                    if($matchActions->id == SiteUtils::clear($_POST['id'])){
+                        $msg = "Описание допустимого действия ".SiteUtils::clear($_POST['description'])." не было откорректировано в базе данных, так как его название не было Вами изменено";
                         $result = 'danger';
                     }else{
-                        $msg = "Описание допустимого действия {$actions->description} не было откорректирована на {$_POST['description']}, так как такое описание {$_POST['description']} уже существует. Дубли не допустимы";
+                        $msg = "Описание допустимого действия {$actions->description} не было откорректирована на ".SiteUtils::clear($_POST['description']).", так как такое описание ".SiteUtils::clear($_POST['description'])." уже существует. Дубли не допустимы";
                         $result = 'danger';
                     }
                     $this->redirect(false, $result, $msg);
                 }else{
                     $oldActions = $actions->description;
-                    $actions->description = $_POST['description'];
+                    $actions->description = SiteUtils::clear($_POST['description']);
                     R::store($actions);
-                    $msg = "Описание допустимого действия {$oldActions} откорректировано на {$_POST['description']}";
+                    $msg = "Описание допустимого действия {$oldActions} откорректировано на ".SiteUtils::clear($_POST['description']);
                     $result = 'success';
                 }
                 $this->redirect('/accesses', $result, $msg);
             }else{
                 $_SESSION['post'] = $_POST;
                 $msg = "Заполните все необходимые поля";
-                $this->redirect("/accesses/correct-act/?id = {$_POST['id']}", 'danger', $msg);
+                $this->redirect(false, 'danger', $msg);
             }
         }
         if(isset($_GET['id']) && is_numeric($_GET['id'])){

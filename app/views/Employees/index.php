@@ -56,7 +56,7 @@
                         <input type="email" class="form-control" id="validationCustom06" name="email" placeholder="Введите email" value="" autocomplete="off">
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationCustom07">Моблильный телефон</label>
+                        <label for="validationCustom07">Мобилильный телефон</label>
                         <input type="text" class="form-control" id="validationCustom07" name="mobil_phone" placeholder="Введите мобильный телефон" value="" autocomplete="off">
                     </div>
                     <div class="col-md-4 mb-3">
@@ -66,7 +66,7 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label for="validationCustom09">Пароль для входя</label>
+                        <label for="validationCustom09">Пароль для входа</label>
                         <input type="text" class="form-control" id="validationCustom09" name="password" placeholder="Введите пароль" value="" required="" autocomplete="off">
                         <div class="invalid-feedback">Заполните поле</div>
                     </div>

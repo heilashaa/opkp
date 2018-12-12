@@ -68,13 +68,7 @@
                                 <div class="col-md-12 mb-3">
                                     <label for="validationCustom01">Вид доступа</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="access" placeholder="Введите вид доступа" value="" required="" autocomplete="off">
-                                    <div class="valid-feedback">
-                                        ok
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Заполните поле
-                                    </div>
-
+                                    <div class="invalid-feedback">Заполните поле</div>
                                 </div>
                             </div>
                             <div class="form-row">

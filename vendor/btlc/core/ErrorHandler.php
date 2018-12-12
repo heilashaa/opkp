@@ -34,7 +34,7 @@ class ErrorHandler { //todo расширить по урокам  "Написа�
      */
     protected function logErrors($message = '', $file = '', $line = '') {
         error_log("[" . date('Y-m-d H:i:s') . "] текст ошибки: {$message} | файл: {$file} | строка : {$line}\n
-        \n", 3, ROOT . '/tmp/errors.log');
+        ", 3, ROOT . '/tmp/errors.log');
     }
 
     /**

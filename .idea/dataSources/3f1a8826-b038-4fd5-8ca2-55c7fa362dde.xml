@@ -2265,7 +2265,7 @@
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="469" parent="257" name="providers_id">
+    <column id="469" parent="257" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
@@ -2361,7 +2361,7 @@
     </index>
     <key id="483" parent="257" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>providers_id</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="484" parent="257" name="providers_ibfk_2">
@@ -2378,7 +2378,7 @@
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <column id="486" parent="258" name="provider_contacts_id">
+    <column id="486" parent="258" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
@@ -2463,14 +2463,14 @@
     </index>
     <key id="498" parent="258" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>provider_contacts_id</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="499" parent="258" name="providers_contacts_ibfk_1">
       <ColNames>providers_id</ColNames>
       <RefSchemaName>opkp</RefSchemaName>
       <RefTableName>providers</RefTableName>
-      <RefColNames>providers_id</RefColNames>
+      <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <column id="500" parent="259" name="quest_statuses_id">

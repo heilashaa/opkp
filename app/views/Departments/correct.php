@@ -7,22 +7,14 @@
                     <div class="col-md-12 mb-3">
                         <input type="hidden" name="id" value="<?=$departments->id?>">
                         <label for="validationCustom01">Наименование подразделения</label>
-                        <input type="text" class="form-control" id="validationCustom01" name="department_full" placeholder="Введите наименование подразделения" value="<?=$departments->department_full;?>" required="">
-                        <div class="valid-feedback">
-                            ok
-                        </div>
-                        <div class="invalid-feedback">
-                            Заполните поле
-                        </div>
+                        <input type="text" class="form-control" id="validationCustom01" name="department_full" placeholder="Введите наименование подразделения" value="<?=$departments->department_full;?>" required="" autocomplete="off">
+                        <div class="invalid-feedback">Заполните поле</div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
                         <label for="validationCustom02">Сокращенное наименование подразделения</label>
-                        <input type="text" class="form-control" id="validationCustom02" name="department" placeholder="Введите сокращенное наименование подразделения" value="<?=$departments->department;?>" required="">
-                        <div class="valid-feedback">
-                            ok
-                        </div>
+                        <input type="text" class="form-control" id="validationCustom02" name="department" placeholder="Введите сокращенное наименование подразделения" value="<?=$departments->department;?>" required="" autocomplete="off">
                         <div class="invalid-feedback">
                             Заполните поле
                         </div>

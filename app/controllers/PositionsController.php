@@ -3,12 +3,13 @@
 namespace app\controllers;
 
 use btlc\App;
+use btlc\libs\SiteUtils;
 use RedBeanPHP\R;
 
 class PositionsController extends AppController {
 
     /**
-     * контроллер выводит все существующие в таблице записи с признаком visiable = 1
+     * action выводит все существующие в таблице записи с признаком visiable = 1
      */
     public function indexAction(){
         $this->setMeta(App::$app->getProperty('site_name'). 'Positions', 'Должности', 'Сайт, бтлц');
@@ -18,12 +19,12 @@ class PositionsController extends AppController {
 
     /**
      * @throws \Exception на 404error
-     * контроллер добавления записи
+     * action добавления записи
      */
     public function addAction(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            if($_POST['submit'] && $_POST['position']){
-                $positions = R::findOrCreate('positions', ['position'=>$_POST['position']]);
+            if(SiteUtils::clear($_POST['submit']) && SiteUtils::clear($_POST['position'])){
+                $positions = R::findOrCreate('positions', ['position'=>SiteUtils::clear($_POST['position'])]);
                 if($positions->hasChanged('id')){
                     $msg = "Должность {$positions->position} добавлена";
                     $result = 'success';
@@ -36,11 +37,11 @@ class PositionsController extends AppController {
                     $msg = "Должность {$positions->position} существует. Нельзя добать дубль";
                     $result = 'danger';
                 }
-                $this->redirect('/positions', $result, $msg);
+                $this->redirect(false, $result, $msg);
             }else{
                 $_SESSION['post'] = $_POST;
                 $msg = "Заполните все необходимые поля";
-                $this->redirect('/positions', 'danger', $msg);
+                $this->redirect(false, 'danger', $msg);
             }
         }else{
             throw new \Exception('Данные отправлены не методом POST',404);
@@ -49,13 +50,13 @@ class PositionsController extends AppController {
 
     /**
      * @throws \Exception на 404error
-     * контроллер удаляет запись по id c проверкой на наличие связанных таблиц. В случае зависимости от удаляемой записи других записей, удаление не происходит
+     * action удаляет запись по id c проверкой на наличие связанных таблиц. В случае зависимости от удаляемой записи других записей, удаление не происходит
      */
     public function deleteAction(){
         if(isset($_GET['id']) && is_numeric($_GET['id'])){
-            $position = R::load('positions', $_GET['id']);
+            $position = R::load('positions', SiteUtils::clear($_GET['id']));
             if($position->id != 0){
-                $check = $this->checkingDependencyOfForeingKey('positions', $_GET['id']);
+                $check = $this->checkingDependencyOfForeingKey('positions', SiteUtils::clear($_GET['id']));
                 if(!$check){
                     $position->visiable = 0;
                     R::store($position);
@@ -65,7 +66,7 @@ class PositionsController extends AppController {
                     $msg = "Должность {$position->position} не может быть удалена. Она связана с {$check['records']} записью(записями) в {$check['tables']} таблице(таблицах) в базе данных";
                     $result = 'danger';
                 }
-                $this->redirect('/positions', $result, $msg);
+                $this->redirect(false, $result, $msg);
             }else{
                 throw new \Exception('Нет такой записи для удаления. Контроллер должен принять параметр id для удаления определнной записи',404);
             }
@@ -76,43 +77,43 @@ class PositionsController extends AppController {
 
     /**
      * @throws \Exception на 404error
-     * контроллер для корректировки записей
+     * action для корректировки записей
      */
     public function correctAction(){
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
-            if(!empty($_POST['position'])) {
-                $positions = R::load('positions', $_POST['id']);
-                $matchPositions = R::findOne('positions', 'WHERE position = ?', [$_POST['position']]);
+            if(!empty(SiteUtils::clear($_POST['position']))) {
+                $positions = R::load('positions', SiteUtils::clear($_POST['id']));
+                $matchPositions = R::findOne('positions', 'WHERE position = ?', [SiteUtils::clear($_POST['position'])]);
                 if($matchPositions){
-                    if($matchPositions->id == $_POST['id']){
-                        $msg = "Должность {$_POST['position']} не была откорректирована в базе данных, так как ее название не было Вами изменено";
+                    if($matchPositions->id == SiteUtils::clear($_POST['id'])){
+                        $msg = "Должность ".SiteUtils::clear($_POST['position'])." не была откорректирована в базе данных, так как ее название не было Вами изменено";
                         $result = 'danger';
                     }elseif($matchPositions->visiable == 1){
-                        $msg = "Должность {$positions->position} не была откорректирована на {$_POST['position']}, так как такая должность {$_POST['position']} уже существует";
+                        $msg = "Должность {$positions->position} не была откорректирована на ".SiteUtils::clear($_POST['position']).", так как такая должность ".SiteUtils::clear($_POST['position'])." уже существует";
                         $result = 'danger';
                     }else{
                         $matchPositions->visiable = 1;
                         R::store($matchPositions);
-                        $msg = "Должность {$positions->position} не была откорректирована на {$_POST['position']}, так как такая должность {$_POST['position']} уже существует в удаленных записях. Должность {$_POST['position']} восстановлена из удаленных записей";
+                        $msg = "Должность {$positions->position} не была откорректирована на ".SiteUtils::clear($_POST['position']).", так как такая должность ".SiteUtils::clear($_POST['position'])." уже существует в удаленных записях. Должность ".SiteUtils::clear($_POST['position'])." восстановлена из удаленных записей";
                         $result = 'success';
                     }
                     $this->redirect(false, $result, $msg);
                 }else{
                     $oldPosition = $positions->position;
-                    $positions->position = $_POST['position'];
+                    $positions->position = SiteUtils::clear($_POST['position']);
                     R::store($positions);
-                    $msg = "Должность {$oldPosition} откорректирована на {$_POST['position']}";
+                    $msg = "Должность {$oldPosition} откорректирована на ".SiteUtils::clear($_POST['position']);
                     $result = 'success';
                 }
-                $this->redirect('/positions', $result, $msg);
+                $this->redirect(false, $result, $msg);
             }else{
                 $_SESSION['post'] = $_POST;
                 $msg = "Заполните все необходимые поля";
-                $this->redirect("/positions/correct/?id = {$_POST['id']}", 'danger', $msg);//обратно с GEt прарметром
+                $this->redirect(false, 'danger', $msg);
             }
         }
         if(isset($_GET['id']) && is_numeric($_GET['id'])){
-            $positions = R::load('positions', $_GET['id']);
+            $positions = R::load('positions', SiteUtils::clear($_GET['id']));
             $this->set(compact('positions'));
             if($positions->getID() == 0){
                 throw new \Exception('Нет такой записи для редактирования', 404);
